@@ -24,7 +24,6 @@ function on_message(self, message_id, message, sender)
 		local isMoveInput = input_service.is_move_input(message)
 		if isMoveInput then
 			unit_manager.on_message(self.id_model, components_service.name.move, message_id, message)
-			-- msg.post(self.url_input_move, input_service.events.key, message)
 		end
 	end
 
@@ -39,9 +38,11 @@ function on_message(self, message_id, message, sender)
 	-- if message_id == events_service.character_events.change_dir_move then
 	-- 	msg.post(self.url_aim, input_service.events.key, message)
 	-- end
-	-- if message_id == input_service.events.mouse_move then
-	-- 	msg.post(self.url_aim, input_service.events.mouse_move, message)
-	-- end
+	if message_id == input_service.events.mouse_move then
+		unit_manager.on_message(self.id_model, components_service.name.aim_circle,
+			input_service.events.mouse_move, message)
+		-- msg.post(self.url_aim, input_service.events.mouse_move, message)
+	end
 end
 
 function final(self)

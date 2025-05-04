@@ -7,7 +7,7 @@ local events_service = require "src.services.events_service"
 local sprite_component = {}
 
 function sprite_component.new()
-    self = setmetatable({}, { __index = sprite_component })
+    local self = setmetatable({}, { __index = sprite_component })
     self.url_sprite = nil
     self.current_animation = nil
 

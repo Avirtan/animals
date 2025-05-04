@@ -14,13 +14,13 @@ function M.spawn_player()
     local url_player_collection = factory_service.spawn_object(factory_service.factory_name.player)
     local player_controller_url = url_player_collection[hash("/player_character")]
     local model = player_model.new(url_player_collection)
-    model.controller_url = player_controller_url
+    model:set_url_controller(player_controller_url)
     state.player = model
     state.units[player_controller_url] = model
-
     msg.post(player_controller_url, events_service.character_events.set_model, {
         id = player_controller_url
     })
+    return model
 end
 
 function M.delete_unit(url)
@@ -43,7 +43,6 @@ function M.on_message(url, name_component, message_id, message)
     --- @type CharacterModel
     local model = state.units[url]
     if model == nil then
-        state.units[url] = nil
         return
     end
     model:on_message(name_component, message_id, message)

@@ -3,13 +3,12 @@ local character_model = {}
 
 --- @param data CharacterModelData
 function character_model.new(data)
-    self = setmetatable({}, { __index = character_model })
+    local self = setmetatable({}, { __index = character_model })
     self.health = data.health or 100
     self.speed = data.speed or 50
-    self.weapon = data.weapon
     self.position = data.position or vmath.vector3(0, 0, 0)
     self.components = {}
-    self.controller_url = data.controller_url
+    self.controller_url = data.controller_url or nil
     self.is_moving = false
     return self
 end
@@ -22,6 +21,9 @@ function character_model:update(dt)
     for _, component in pairs(self.components) do
         component:update(dt, self)
     end
+    if self.is_moving then
+        go.set_position(self.position, self.controller_url)
+    end
 end
 
 function character_model:on_message(name_component, message_id, message)
@@ -32,10 +34,15 @@ function character_model:on_message(name_component, message_id, message)
     comp:on_message(message_id, message, self)
 end
 
-function character_model:destroy(dt)
+function character_model:destroy()
     for _, component in pairs(self.components) do
         component:destroy()
     end
+end
+
+function character_model:set_url_controller(url)
+    self.controller_url = url
+    go.set_position(self.position, self.controller_url)
 end
 
 return character_model

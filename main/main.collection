@@ -6,6 +6,14 @@ instances {
 instances {
   id: "level_start"
   prototype: "/resources/go/level/level_start.go"
+  component_properties {
+    id: "level_start_controller"
+    properties {
+      id: "camera"
+      value: "/camera_follow"
+      type: PROPERTY_TYPE_URL
+    }
+  }
 }
 instances {
   id: "camera_follow"

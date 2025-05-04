@@ -10,7 +10,7 @@ local components_service = require "src.services.components_service"
 local move_key_component = {}
 
 function move_key_component.new()
-    self                = setmetatable({}, { __index = move_key_component })
+    local self          = setmetatable({}, { __index = move_key_component })
     self.dir_move       = vmath.vector3(0, 0, 0)
     self.animation_data = {
         x = 0,
@@ -26,12 +26,10 @@ end
 
 --- @param unit CharacterModel
 function move_key_component:update(dt, unit)
-    if self.dir_move.x == 0 and self.dir_move.y == 0 then
+    if not unit.is_moving then
         return
     end
-    local pos = go.get_position(unit.controller_url)
-    pos = pos + self.dir_move * unit.speed * dt
-    go.set_position(pos, unit.controller_url)
+    unit.position = unit.position + self.dir_move * unit.speed * dt
 end
 
 --- @param unit CharacterModel

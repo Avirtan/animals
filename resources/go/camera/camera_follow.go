@@ -1,3 +1,12 @@
+components {
+  id: "camera_follow"
+  component: "/src/scripts/camera/camera_follow.script"
+  properties {
+    id: "url_camera"
+    value: "#camera"
+    type: PROPERTY_TYPE_URL
+  }
+}
 embedded_components {
   id: "camera"
   type: "camera"

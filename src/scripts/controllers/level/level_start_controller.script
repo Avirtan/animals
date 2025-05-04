@@ -6,13 +6,16 @@ local unit_manager = require "src.managers.unit_manager"
 
 go.property("player_factory", msg.url())
 go.property("enemy_factory", msg.url())
+go.property("camera", msg.url())
 
 function init(self)
     level_service.set_level_controller(msg.url())
     factory_service.set_factory(factory_service.factory_name.player, self.player_factory)
     factory_service.set_factory(factory_service.factory_name.enemy, self.enemy_factory)
-    unit_manager.spawn_player()
-
+    local player = unit_manager.spawn_player()
+    msg.post(self.camera, events_service.camera.set_target, {
+        id = player.model.controller_url
+    })
     self.spawn_unit_count = 0
     self.enemys = {}
 end

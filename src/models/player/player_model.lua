@@ -4,20 +4,46 @@ local aim_circle_component = require "src.components.player.aim_circle_component
 local sprite_component = require "src.components.animation.sprite_component"
 local components_service = require "src.services.components_service"
 
-local M = {}
+--- @class PlayerModel
+--- @field model CharacterModel
+local player_model = {
+}
 
-function M.new(url_player_collection)
+function player_model.new(url_player_collection)
+    local self = setmetatable({}, { __index = player_model })
+
     local spawn_position = vmath.vector3(50, 50, 0)
-    local model = character_model.new({
+
+    self.model = character_model.new({
         position = spawn_position,
         health = 100
     })
     local url_aim = url_player_collection["/aim_circle"]
-    model:add_component(components_service.name.move, move_key_component.new())
-    model:add_component(components_service.name.aim_circle, aim_circle_component.new(url_aim))
-    model:add_component(components_service.name.sprite_animation, sprite_component.new(url_aim))
+    self.model:add_component(components_service.name.move, move_key_component.new())
+    self.model:add_component(components_service.name.aim_circle, aim_circle_component.new(url_aim))
+    self.model:add_component(components_service.name.sprite_animation, sprite_component.new())
 
-    return model
+    return self
 end
 
-return M
+function player_model:add_component(name, component)
+    self.model:add_component(name, component)
+end
+
+function player_model:update(dt)
+    self.model:update(dt)
+end
+
+function player_model:on_message(name_component, message_id, message)
+    self.model:on_message(name_component, message_id, message)
+end
+
+function player_model:destroy()
+    self.model:destroy()
+end
+
+function player_model:set_url_controller(url)
+    self.model:set_url_controller(url)
+end
+
+return player_model

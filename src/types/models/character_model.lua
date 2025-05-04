@@ -1,7 +1,6 @@
 --- @class CharacterModel
 --- @field health number Текущее здоровье персонажа (по умолчанию 100)
 --- @field speed number Скорость перемещения персонажа (по умолчанию 50)
---- @field weapon string|nil Название оружия, если есть
 --- @field position vector3 Позиция персонажа в 3D пространстве (по умолчанию 0,0,0)
 --- @field components table<string, any> Таблица компонентов персонажа
 --- @field controller_url hash URL контроллера персонажа
@@ -10,6 +9,5 @@
 --- @class CharacterModelData
 --- @field health number Текущее здоровье персонажа (по умолчанию 100)
 --- @field speed number Скорость перемещения персонажа (по умолчанию 50)
---- @field weapon string|nil Название оружия, если есть
 --- @field position vector3 Позиция персонажа в 3D пространстве (по умолчанию 0,0,0)
 --- @field controller_url hash URL контроллера персонажа
