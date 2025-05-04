@@ -1,0 +1,39 @@
+local event_service_controller = require "src.services.controllers.event_service"
+local level_service = require "src.services.levels.level_service"
+local factory_service = require "src.services.levels.factory_service"
+local events_service = require "src.services.events_service"
+local unit_manager = require "src.managers.unit_manager"
+
+go.property("player_factory", msg.url())
+go.property("enemy_factory", msg.url())
+
+function init(self)
+    level_service.set_level_controller(msg.url())
+    factory_service.set_factory(factory_service.factory_name.player, self.player_factory)
+    factory_service.set_factory(factory_service.factory_name.enemy, self.enemy_factory)
+    unit_manager.spawn_player()
+
+    self.spawn_unit_count = 0
+    self.enemys = {}
+end
+
+function update(self, dt)
+    unit_manager.update(dt)
+    -- if not self.start_level then
+    --     return
+    -- end
+    -- if self.spawn_unit_count > 0 then
+    --     local url_enemy = factory_controller_service.spawn_object(factory_controller_service.factory_name.enemy,
+    --         vmath.vector3(200, 150, 0))
+    --     table.insert(self.enemys, url_enemy)
+    --     msg.post(url_enemy, events_service.character_events.set_target, {
+    --         target = level_controller_service.get_player()
+    --     })
+    --     self.spawn_unit_count = self.spawn_unit_count - 1
+    -- end
+end
+
+function on_message(self, message_id, message, sender)
+    if message_id == event_service_controller.controller_events.start_level then
+    end
+end

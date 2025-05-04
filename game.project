@@ -1,0 +1,29 @@
+[bootstrap]
+main_collection = /main/main.collectionc
+
+[script]
+shared_state = 1
+
+[display]
+width = 1280
+height = 800
+high_dpi = 1
+display_device_info = 0
+
+[android]
+input_method = HiddenInputField
+
+[html5]
+scale_mode = stretch
+
+[project]
+title = animals_battler
+dependencies#0 = https://github.com/selimanac/defold-astar/archive/refs/heads/master.zip
+dependencies#1 = https://github.com/Insality/druid/archive/refs/tags/1.1.0.zip
+dependencies#2 = https://github.com/Insality/defold-event/archive/refs/tags/11.zip
+dependencies#3 = https://github.com/AGulev/drawpixels/archive/refs/tags/2.0.2.zip
+
+[graphics]
+default_texture_min_filter = nearest
+default_texture_mag_filter = nearest
+

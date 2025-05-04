@@ -1,0 +1,6 @@
+font: "/assets/sprites/fonts/04font.ttf"
+material: "/builtins/fonts/font.material"
+size: 25
+antialias: 0
+shadow_blur: 0
+characters: "! \"#$%&\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~"

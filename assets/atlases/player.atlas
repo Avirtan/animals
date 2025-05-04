@@ -1,0 +1,138 @@
+images {
+  image: "/assets/sprites/utils/dot16.png"
+}
+animations {
+  id: "down"
+  images {
+    image: "/assets/sprites/units/elite-soldier/down/1.png"
+  }
+  images {
+    image: "/assets/sprites/units/elite-soldier/down/2.png"
+  }
+  images {
+    image: "/assets/sprites/units/elite-soldier/down/3.png"
+  }
+  images {
+    image: "/assets/sprites/units/elite-soldier/down/4.png"
+  }
+  playback: PLAYBACK_LOOP_FORWARD
+  fps: 6
+}
+animations {
+  id: "rocket"
+  images {
+    image: "/assets/sprites/buildings/turret-rocket/1.png"
+  }
+  images {
+    image: "/assets/sprites/buildings/turret-rocket/2.png"
+  }
+  images {
+    image: "/assets/sprites/buildings/turret-rocket/3.png"
+  }
+  playback: PLAYBACK_LOOP_FORWARD
+  fps: 8
+  flip_horizontal: 1
+}
+animations {
+  id: "up"
+  images {
+    image: "/assets/sprites/units/elite-soldier/up/1.png"
+  }
+  images {
+    image: "/assets/sprites/units/elite-soldier/up/2.png"
+  }
+  images {
+    image: "/assets/sprites/units/elite-soldier/up/3.png"
+  }
+  images {
+    image: "/assets/sprites/units/elite-soldier/up/4.png"
+  }
+  playback: PLAYBACK_LOOP_FORWARD
+  fps: 6
+}
+animations {
+  id: "left"
+  images {
+    image: "/assets/sprites/units/elite-soldier/side/1.png"
+  }
+  images {
+    image: "/assets/sprites/units/elite-soldier/side/2.png"
+  }
+  images {
+    image: "/assets/sprites/units/elite-soldier/side/3.png"
+  }
+  images {
+    image: "/assets/sprites/units/elite-soldier/side/4.png"
+  }
+  playback: PLAYBACK_LOOP_FORWARD
+  fps: 6
+  flip_horizontal: 1
+}
+animations {
+  id: "right"
+  images {
+    image: "/assets/sprites/units/elite-soldier/side/1.png"
+  }
+  images {
+    image: "/assets/sprites/units/elite-soldier/side/2.png"
+  }
+  images {
+    image: "/assets/sprites/units/elite-soldier/side/3.png"
+  }
+  images {
+    image: "/assets/sprites/units/elite-soldier/side/4.png"
+  }
+  playback: PLAYBACK_LOOP_FORWARD
+  fps: 6
+}
+animations {
+  id: "idle"
+  images {
+    image: "/assets/sprites/units/elite-soldier/down/1.png"
+  }
+  playback: PLAYBACK_NONE
+  fps: 0
+}
+animations {
+  id: "explosion"
+  images {
+    image: "/assets/sprites/fx/explosion/1.png"
+  }
+  images {
+    image: "/assets/sprites/fx/explosion/2.png"
+  }
+  images {
+    image: "/assets/sprites/fx/explosion/3.png"
+  }
+  images {
+    image: "/assets/sprites/fx/explosion/4.png"
+  }
+  images {
+    image: "/assets/sprites/fx/explosion/5.png"
+  }
+  images {
+    image: "/assets/sprites/fx/explosion/6.png"
+  }
+  images {
+    image: "/assets/sprites/fx/explosion/7.png"
+  }
+  images {
+    image: "/assets/sprites/fx/explosion/8.png"
+  }
+  images {
+    image: "/assets/sprites/fx/explosion/9.png"
+  }
+  fps: 6
+}
+animations {
+  id: "tank"
+  images {
+    image: "/assets/sprites/units/tank/down/1.png"
+  }
+  images {
+    image: "/assets/sprites/units/tank/down/2.png"
+  }
+  playback: PLAYBACK_LOOP_FORWARD
+  fps: 6
+}
+extrude_borders: 2

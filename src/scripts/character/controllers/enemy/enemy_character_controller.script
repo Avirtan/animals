@@ -1,0 +1,44 @@
+local events_service = require "src.services.events_service"
+local screen_service = require "src.services.screen_service"
+
+go.property("url_astar_move", msg.url())
+
+local function update_target_position(self)
+	local position = go.get_position(self.target_character)
+	local tileXStart, tileYStart = screen_service.world_to_tile(go.get_position().x, go.get_position().y)
+	local tileXEnd, tileYEnd = screen_service.world_to_tile(position.x, position.y)
+	local status, size, total_cost, path = astar.solve(tileXStart, tileYStart, tileXEnd, tileYEnd)
+	if status == astar.SOLVED then
+		msg.post(self.url_astar_move, events_service.character_events.send_path, path)
+	end
+	print(self.target_character)
+end
+
+function init(self)
+	self.tmpVector         = vmath.vector3(0, 0, 0)
+	self.currentUrl        = msg.url()
+	self.points            = {}
+	self.network_object_id = ""
+	self.target_character  = nil
+	self.time_dely_update  = 3
+	go.set(self.url_astar_move, "speed", 50)
+end
+
+---@param dt number
+function update(self, dt)
+	if self.target_character == nil then
+		return
+	end
+	if self.time_dely_update <= 0 then
+		update_target_position(self)
+		self.time_dely_update = 1
+	end
+	self.time_dely_update = self.time_dely_update - dt
+end
+
+function on_message(self, message_id, message, sender)
+	if message_id == events_service.character_events.set_target then
+		self.target_character = message.target
+		update_target_position(self)
+	end
+end

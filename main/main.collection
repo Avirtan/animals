@@ -1,0 +1,21 @@
+name: "main"
+instances {
+  id: "map_start"
+  prototype: "/resources/go/maps/map_start.go"
+}
+instances {
+  id: "level_start"
+  prototype: "/resources/go/level/level_start.go"
+}
+instances {
+  id: "camera_follow"
+  prototype: "/resources/go/camera/camera_follow.go"
+  position {
+    z: 10.0
+  }
+}
+instances {
+  id: "game_controller"
+  prototype: "/resources/go/controllers/game_controller.go"
+}
+scale_along_z: 0

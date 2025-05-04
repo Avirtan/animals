@@ -1,0 +1,37 @@
+/.editor_settings
+/.internal
+/build
+.externalToolBuilders
+.DS_Store
+Thumbs.db
+.lock-wscript
+*.pyc
+.project
+.cproject
+builtins
+
+*.pyc
+.deps
+.externalToolBuilders
+.internal
+.lock-wscript
+.project
+.cproject
+build
+builtins
+js-web/
+node_modules/
+
+# IntelliJ IDEA
+/.idea
+/*.iml
+
+# Mac
+.DS_Store
+**/*/.editor_settings
+**/*/manifest.public.der
+**/*/manifest.private.der
+
+/.vscode
+
+debugger/

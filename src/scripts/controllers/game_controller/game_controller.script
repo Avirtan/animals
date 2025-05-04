@@ -1,0 +1,29 @@
+-- local game_controller_service = require "src.services.game_controller_service"
+local inputService = require "src.services.input_service"
+-- local events_service = require "src.services.events_service"
+-- local router_service = require "src.services.router_service"
+local screen_service = require "src.services.screen_service"
+
+function init(self)
+    msg.post(".", "acquire_input_focus")
+    self.mouse = vmath.vector3()
+    self.mouse_change = vmath.vector3()
+    -- game_controller_service.init_controller(game_controller_service.controller_name.game_controller, msg.url())
+end
+
+function on_message(self, message_id, message, sender)
+    -- if message_id == events_service.controller_events.all_controllers_init then
+    --     -- timer.delay(2, false, function()
+    --     msg.post("/gui#debugGui", "hide_element")
+    --     local router_controller = router_service.get_router_controller_url()
+    --     msg.post(router_controller, events_service.router_events.start_load_location, {
+    --         name = router_service.get_all_locations().world.name
+    --     })
+    --     -- end)
+    -- end
+end
+
+--- @param action on_input.action
+function on_input(self, action_id, action)
+    inputService.handle_input(action_id, action)
+end

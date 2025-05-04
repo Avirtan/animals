@@ -1,0 +1,11 @@
+--- @class touch_data_event  # Тип данных, описывающий информацию о касании/тапе
+--- @field action_id string  # Уникальный идентификатор действия (например, "touch", "multitouch_1")
+--- @field x number  # Координата X касания (в экранных пикселях или игровых единицах)
+--- @field y number  # Координата Y касания (в экранных пикселях или игровых единицах)
+--- @field pressed boolean  # Состояние: `true` — палец касается экрана, `false` — отпущен
+
+--- @class key_data_event  # Тип данных, описывающий информацию о нажатии клавиши
+--- @field action_id string
+--- @field pressed  boolean
+--- @field released boolean
+--- @field repeated boolean

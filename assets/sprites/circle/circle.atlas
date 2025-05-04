@@ -1,0 +1,4 @@
+images {
+  image: "/assets/sprites/circle/keys.png"
+}
+extrude_borders: 2

@@ -1,0 +1,11 @@
+name: "player"
+instances {
+  id: "player_character"
+  prototype: "/resources/go/character/player/player_character.go"
+  children: "aim_circle"
+}
+instances {
+  id: "aim_circle"
+  prototype: "/resources/go/character/player/aim_circle.go"
+}
+scale_along_z: 0
