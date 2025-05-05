@@ -10,7 +10,7 @@ instances {
     id: "level_start_controller"
     properties {
       id: "camera"
-      value: "/camera_follow"
+      value: "/camera_follow#camera_follow"
       type: PROPERTY_TYPE_URL
     }
   }

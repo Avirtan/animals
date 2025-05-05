@@ -4,6 +4,7 @@
 --- @field position vector3 Позиция персонажа в 3D пространстве (по умолчанию 0,0,0)
 --- @field components table<string, any> Таблица компонентов персонажа
 --- @field controller_url hash URL контроллера персонажа
+--- @field dir_move vector3 Если движимся
 --- @field is_moving boolean Если движимся
 
 --- @class CharacterModelData

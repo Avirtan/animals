@@ -1,6 +1,6 @@
 components {
   id: "level_start_controller"
-  component: "/src/scripts/controllers/level/level_start_controller.script"
+  component: "/src/scripts/controllers/level/start/level_start_controller.script"
   properties {
     id: "player_factory"
     value: "#player_factory"
@@ -11,6 +11,15 @@ components {
     value: "#enemy_factory"
     type: PROPERTY_TYPE_URL
   }
+  properties {
+    id: "location_controller"
+    value: "#location_start_controller"
+    type: PROPERTY_TYPE_URL
+  }
+}
+components {
+  id: "location_start_controller"
+  component: "/src/scripts/controllers/level/start/location_start_controller.script"
 }
 embedded_components {
   id: "player_factory"

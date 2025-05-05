@@ -1,9 +1,13 @@
 local tilemap_service = require "src.services.map.tilemap_service"
+local screen_service = require "src.services.screen_service"
 
 local M = {}
 
 local state = {
     map = {},
+    factory_dot_debug = nil,
+    points_debug = {},
+    tmp_vector = vmath.vector3()
 }
 
 --- @param layer string|userdata
@@ -27,8 +31,30 @@ function M.set_map(layer)
     astar.set_map(state.map)
 end
 
-function M.calculate_path(x1, y1, x2, y2)
+function M.set_factory(url)
+    state.factory_dot_debug = url
+end
 
+function M.show_points_debug(url, paths)
+    M.reset_points_debug(url)
+    for index, tile in ipairs(paths) do
+        local x, y         = screen_service.tile_to_world(tile.x, tile.y);
+        state.tmp_vector.x = x
+        state.tmp_vector.y = y
+        local point        = factory.create(state.factory_dot_debug, state.tmp_vector)
+        print(state.tmp_vector.x, " ", state.tmp_vector.y)
+        state.points_debug[url][index] = point
+    end
+end
+
+function M.reset_points_debug(url)
+    if state.points_debug[url] == nil then
+        state.points_debug[url] = {}
+    end
+    for _, id_point in ipairs(state.points_debug[url]) do
+        go.delete(id_point)
+    end
+    state.points_debug[url] = {}
 end
 
 function M.set_cost(costs)

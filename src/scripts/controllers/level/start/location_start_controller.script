@@ -1,0 +1,17 @@
+local event_service_controller = require "src.services.controllers.event_service"
+
+function init(self)
+    self.is_start_level = false
+end
+
+function update(self, dt)
+    if not self.is_start_level then
+        return
+    end
+end
+
+function on_message(self, message_id, message, sender)
+    if message_id == event_service_controller.controller_events.start_level then
+        self.is_start_level = true
+    end
+end

@@ -3,10 +3,13 @@ local astar_service = require "src.services.map.astar_service"
 local event_service_controller = require "src.services.controllers.event_service"
 
 go.property("url_map", msg.url())
+go.property("url_factory", msg.url())
 
-local function init_controller(self)
+
+function init(self)
     tilemap_service.set_tilemap(self.url_map)
     astar_service.set_map("map")
+    astar_service.set_factory(self.url_factory)
     local costs = {
         [29] = {
             1.0,
@@ -20,13 +23,4 @@ local function init_controller(self)
         }
     }
     astar_service.set_cost(costs)
-end
-
----@param message_id hash
----@param message table
----@param sender url
-function on_message(self, message_id, message, sender)
-    if message_id == event_service_controller.controller_events.init_controller then
-        init_controller(self)
-    end
 end

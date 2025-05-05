@@ -1,7 +1,3 @@
-components {
-  id: "circle_aim"
-  component: "/src/scripts/character/components/aim/circle_aim.script"
-}
 embedded_components {
   id: "circle_sprite"
   type: "sprite"

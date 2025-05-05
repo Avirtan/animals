@@ -1,4 +1,7 @@
 images {
   image: "/assets/sprites/circle/keys.png"
 }
+images {
+  image: "/assets/sprites/utils/dot16.png"
+}
 extrude_borders: 2

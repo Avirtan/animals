@@ -3,38 +3,38 @@ local screen_service = require "src.services.screen_service"
 
 --- @class AimCircleComponent
 --- @field url_aim hash
---- @field parent userdata
+--- @field parent userdata | nil
 --- @field tmp_vector vector3
 --- @field current_state_size boolean
+--- @field model CharacterModel
 local aim_circle_component = {}
 
-function aim_circle_component.new(url_aim)
+function aim_circle_component.new(url_aim, model)
     local self = setmetatable({}, { __index = aim_circle_component })
     self.url_aim = url_aim
     self.parent = go.get_parent(self.url_aim)
     self.tmp_vector = vmath.vector3()
     self.current_state_size = false
+    self.model = model
     return self
 end
 
 function aim_circle_component:destroy()
 end
 
---- @param unit CharacterModel
-function aim_circle_component:update(dt, unit)
-    if unit.is_moving and not self.current_state_size then
+function aim_circle_component:update(dt)
+    if self.model.is_moving and not self.current_state_size then
         go.set(self.url_aim, "scale.x", 1)
         go.set(self.url_aim, "scale.y", 1)
         self.current_state_size = true
-    elseif not unit.is_moving and self.current_state_size then
+    elseif not self.model.is_moving and self.current_state_size then
         go.set(self.url_aim, "scale.x", 0.5)
         go.set(self.url_aim, "scale.y", 0.5)
         self.current_state_size = false
     end
 end
 
---- @param unit CharacterModel
-function aim_circle_component:on_message(message_id, message, unit)
+function aim_circle_component:on_message(message_id, message)
     if input_service.events.mouse_move == message_id then
         local x, y = screen_service.screen_to_world(message.x, message.y)
         local position_player = go.get_position(self.parent)

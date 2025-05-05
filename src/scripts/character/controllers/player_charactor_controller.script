@@ -23,7 +23,7 @@ function on_message(self, message_id, message, sender)
 	if message_id == input_service.events.key then
 		local isMoveInput = input_service.is_move_input(message)
 		if isMoveInput then
-			unit_manager.on_message(self.id_model, components_service.name.move, message_id, message)
+			unit_manager.on_message(self.id_model, components_service.name.move_key, message_id, message)
 		end
 	end
 
@@ -35,13 +35,9 @@ function on_message(self, message_id, message, sender)
 			events_service.animation_events.set_sprite, { url = self.url_sprite })
 	end
 
-	-- if message_id == events_service.character_events.change_dir_move then
-	-- 	msg.post(self.url_aim, input_service.events.key, message)
-	-- end
 	if message_id == input_service.events.mouse_move then
 		unit_manager.on_message(self.id_model, components_service.name.aim_circle,
 			input_service.events.mouse_move, message)
-		-- msg.post(self.url_aim, input_service.events.mouse_move, message)
 	end
 end
 

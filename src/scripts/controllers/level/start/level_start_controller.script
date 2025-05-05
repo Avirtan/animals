@@ -6,6 +6,7 @@ local unit_manager = require "src.managers.unit_manager"
 
 go.property("player_factory", msg.url())
 go.property("enemy_factory", msg.url())
+go.property("location_controller", msg.url())
 go.property("camera", msg.url())
 
 function init(self)
@@ -16,27 +17,14 @@ function init(self)
     msg.post(self.camera, events_service.camera.set_target, {
         id = player.model.controller_url
     })
-    self.spawn_unit_count = 0
-    self.enemys = {}
+    msg.post(self.location_controller, event_service_controller.controller_events.start_level)
+    local enemy = unit_manager.spawn_enemy()
 end
 
 function update(self, dt)
     unit_manager.update(dt)
-    -- if not self.start_level then
-    --     return
-    -- end
-    -- if self.spawn_unit_count > 0 then
-    --     local url_enemy = factory_controller_service.spawn_object(factory_controller_service.factory_name.enemy,
-    --         vmath.vector3(200, 150, 0))
-    --     table.insert(self.enemys, url_enemy)
-    --     msg.post(url_enemy, events_service.character_events.set_target, {
-    --         target = level_controller_service.get_player()
-    --     })
-    --     self.spawn_unit_count = self.spawn_unit_count - 1
-    -- end
 end
 
 function on_message(self, message_id, message, sender)
-    if message_id == event_service_controller.controller_events.start_level then
-    end
+
 end

@@ -9,6 +9,7 @@ function character_model.new(data)
     self.position = data.position or vmath.vector3(0, 0, 0)
     self.components = {}
     self.controller_url = data.controller_url or nil
+    self.dir_move = vmath.vector3()
     self.is_moving = false
     return self
 end
@@ -19,10 +20,7 @@ end
 
 function character_model:update(dt)
     for _, component in pairs(self.components) do
-        component:update(dt, self)
-    end
-    if self.is_moving then
-        go.set_position(self.position, self.controller_url)
+        component:update(dt)
     end
 end
 
@@ -31,7 +29,7 @@ function character_model:on_message(name_component, message_id, message)
     if comp == nil then
         return
     end
-    comp:on_message(message_id, message, self)
+    comp:on_message(message_id, message)
 end
 
 function character_model:destroy()
