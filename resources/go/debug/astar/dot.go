@@ -8,4 +8,7 @@ embedded_components {
   "  texture: \"/assets/sprites/circle/circle.atlas\"\n"
   "}\n"
   ""
+  position {
+    z: 1.0
+  }
 }

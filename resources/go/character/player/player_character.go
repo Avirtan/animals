@@ -1,6 +1,6 @@
 components {
   id: "player_charactor_controller"
-  component: "/src/scripts/character/controllers/player_charactor_controller.script"
+  component: "/src/scripts/controllers/characters/player_charactor_controller.script"
   properties {
     id: "url_sprite"
     value: "#sprite_character"

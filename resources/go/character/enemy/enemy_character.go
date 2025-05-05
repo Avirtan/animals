@@ -1,11 +1,6 @@
 components {
   id: "base_enemy_character"
-  component: "/src/scripts/character/controllers/enemy/enemy_character_controller.script"
-  properties {
-    id: "url_sprite"
-    value: "#sprite"
-    type: PROPERTY_TYPE_URL
-  }
+  component: "/src/scripts/controllers/characters/enemy/enemy_character_controller.script"
 }
 embedded_components {
   id: "sprite"

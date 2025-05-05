@@ -36,9 +36,7 @@ function enemy_model:add_component(name, component)
 end
 
 function enemy_model:update(dt)
-    for _, component in pairs(self.base_model.components) do
-        component:update(dt, self.base_model, self)
-    end
+    self.base_model:update(dt)
 end
 
 function enemy_model:on_message(name_component, message_id, message)
