@@ -7,11 +7,9 @@ local components_service = require "src.services.components_service"
 go.property("url_sprite", msg.url())
 
 function init(self)
-	self.current_url       = msg.url()
-	self.id_model          = nil
+	self.current_url = msg.url()
+	self.id_model    = nil
 
-	self.points            = {}
-	self.network_object_id = ""
 	input_service.addListener(input_service.events.key, self.current_url)
 	input_service.addListener(input_service.events.touch, self.current_url)
 	input_service.addListener(input_service.events.mouse_move, self.current_url)
@@ -24,6 +22,8 @@ function on_message(self, message_id, message, sender)
 		local isMoveInput = input_service.is_move_input(message)
 		if isMoveInput then
 			unit_manager.on_message(self.id_model, components_service.name.move_key, message_id, message)
+		else
+			unit_manager.on_message(self.id_model, components_service.name.attack.simple_attack, message_id, message)
 		end
 	end
 

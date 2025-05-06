@@ -7,6 +7,9 @@ local M = {
         sprite_animation = "sprite_animation_component",
         select_target = {
             player = "target_player_component"
+        },
+        attack = {
+            simple_attack = "simple_attack_component"
         }
     }
 }

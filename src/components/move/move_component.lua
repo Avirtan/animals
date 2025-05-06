@@ -1,8 +1,8 @@
 --- @class MoveComponent
---- @field model CharacterModel
+--- @field model CharacterModel | BulletModel
 local move_component = {}
 
---- @param model CharacterModel
+--- @param model CharacterModel | BulletModel
 function move_component.new(model)
     local self = setmetatable({}, { __index = move_component })
     self.model = model

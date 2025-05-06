@@ -102,7 +102,7 @@ function move_astar_component:update_path()
             self.paths[i + 1] = y
             i                 = i + 2;
         end
-        astar_service.show_points_debug(self.model.base_model.controller_url, path)
+        -- astar_service.show_points_debug(self.model.base_model.controller_url, path)
     end
 end
 

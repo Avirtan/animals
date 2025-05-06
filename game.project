@@ -27,3 +27,6 @@ dependencies#3 = https://github.com/AGulev/drawpixels/archive/refs/tags/2.0.2.zi
 default_texture_min_filter = nearest
 default_texture_mag_filter = nearest
 
+[physics]
+use_fixed_timestep = 1
+

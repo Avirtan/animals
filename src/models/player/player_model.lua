@@ -3,6 +3,7 @@ local move_key_component = require "src.components.move.move_key_component"
 local move_component = require "src.components.move.move_component"
 local aim_circle_component = require "src.components.player.aim_circle_component"
 local sprite_component = require "src.components.animation.sprite_component"
+local simple_attack_component = require "src.components.attack.simple_attack_component"
 local components_service = require "src.services.components_service"
 
 --- @class PlayerModel
@@ -10,7 +11,9 @@ local components_service = require "src.services.components_service"
 local player_model = {
 }
 
-function player_model.new(url_player_collection)
+--- @param url_player_collection any
+--- @param unit_manager UnitManager
+function player_model.new(url_player_collection, unit_manager)
     local self = setmetatable({}, { __index = player_model })
 
     local spawn_position = vmath.vector3(50, 50, 0)
@@ -20,11 +23,14 @@ function player_model.new(url_player_collection)
         health = 100,
         speed = 50
     })
+
     local url_aim = url_player_collection["/aim_circle"]
     self.model:add_component(components_service.name.move, move_component.new(self.model))
     self.model:add_component(components_service.name.move_key, move_key_component.new(self.model))
     self.model:add_component(components_service.name.aim_circle, aim_circle_component.new(url_aim, self.model))
     self.model:add_component(components_service.name.sprite_animation, sprite_component.new())
+    self.model:add_component(components_service.name.attack.simple_attack,
+        simple_attack_component.new(self.model, unit_manager))
 
     return self
 end

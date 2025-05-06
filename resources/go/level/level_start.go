@@ -12,6 +12,11 @@ components {
     type: PROPERTY_TYPE_URL
   }
   properties {
+    id: "bullet_factory"
+    value: "#bullet_factory"
+    type: PROPERTY_TYPE_URL
+  }
+  properties {
     id: "location_controller"
     value: "#location_start_controller"
     type: PROPERTY_TYPE_URL
@@ -31,5 +36,11 @@ embedded_components {
   id: "enemy_factory"
   type: "factory"
   data: "prototype: \"/resources/go/character/enemy/enemy_character.go\"\n"
+  ""
+}
+embedded_components {
+  id: "bullet_factory"
+  type: "factory"
+  data: "prototype: \"/resources/go/character/bullets/bullet.go\"\n"
   ""
 }

@@ -38,11 +38,10 @@ end
 function M.show_points_debug(url, paths)
     M.reset_points_debug(url)
     for index, tile in ipairs(paths) do
-        local x, y         = screen_service.tile_to_world(tile.x, tile.y);
-        state.tmp_vector.x = x
-        state.tmp_vector.y = y
-        local point        = factory.create(state.factory_dot_debug, state.tmp_vector)
-        print(state.tmp_vector.x, " ", state.tmp_vector.y)
+        local x, y                     = screen_service.tile_to_world(tile.x, tile.y);
+        state.tmp_vector.x             = x
+        state.tmp_vector.y             = y
+        local point                    = factory.create(state.factory_dot_debug, state.tmp_vector)
         state.points_debug[url][index] = point
     end
 end

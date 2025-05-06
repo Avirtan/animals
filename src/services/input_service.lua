@@ -9,7 +9,9 @@ local M = {
         down = hash("down"),
         left = hash("left"),
         right = hash("right"),
-        touch = hash("touch")
+        touch = hash("touch"),
+        fire = hash("fire")
+
     },
 }
 

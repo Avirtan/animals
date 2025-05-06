@@ -2,6 +2,7 @@ local M = {
     factory_name = {
         player = "player_factory",
         enemy = "enemy_factory",
+        bullet = "bullet_factory",
     }
 }
 
