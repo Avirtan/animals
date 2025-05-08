@@ -1,0 +1,10 @@
+go.property("url_sprite", msg.url())
+
+function init(self)
+	self.current_url = msg.url()
+	self.id_model    = nil
+end
+
+function on_message(self, message_id, message, sender)
+
+end

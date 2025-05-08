@@ -1,28 +1,28 @@
 local anim_service = require "src.services.characters.animation_service"
 local events_service = require "src.services.events_service"
 
---- @class SpriteComponent
+--- @class SpriteComponent1
 --- @field url_sprite hash
 --- @field current_animation userdata
-local sprite_component = {}
+local sprite_component_1 = {}
 
-function sprite_component.new()
-    local self = setmetatable({}, { __index = sprite_component })
+function sprite_component_1.new()
+    local self = setmetatable({}, { __index = sprite_component_1 })
     self.url_sprite = nil
     self.current_animation = nil
 
     return self
 end
 
-function sprite_component:destroy()
+function sprite_component_1:destroy()
 end
 
 --- @param unit CharacterModel
-function sprite_component:update(dt, unit)
+function sprite_component_1:update(dt, unit)
 end
 
 --- @param unit CharacterModel
-function sprite_component:on_message(message_id, message, unit)
+function sprite_component_1:on_message(message_id, message, unit)
     if message_id == events_service.animation_events.set_sprite then
         self.url_sprite = message.url
     end
@@ -33,7 +33,7 @@ function sprite_component:on_message(message_id, message, unit)
     end
 end
 
-function sprite_component:update_animation(animation)
+function sprite_component_1:update_animation(animation)
     if self.current_animation == animation then
         return
     end
@@ -41,4 +41,4 @@ function sprite_component:update_animation(animation)
     self.current_animation = animation
 end
 
-return sprite_component
+return sprite_component_1
