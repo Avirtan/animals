@@ -1,35 +1,42 @@
 local events_service = require "src.services.events_service"
 local camera_service = require "src.services.camera_service"
+local world_ecs = require "src.ecs.world_ecs"
+local camera_follow_component = require "src.ecs.components.camera.camera_follow_component"
 
 go.property("url_camera", msg.url())
 
 function init(self)
-    self.target = nil
-    self.lerp_factor = 0.05
-    self.target_pos = vmath.vector3()
-    self.camera_pos = vmath.vector3(0, 0, 10)
+    -- self.target = nil
+    -- self.lerp_factor = 0.05
+    -- self.target_pos = vmath.vector3()
+    -- self.camera_pos = vmath.vector3(0, 0, 10)
     camera_service.set_camera(self.url_camera)
+    local world = world_ecs.new(world_ecs.world_id.Main)
+    local entity = world_ecs.create_entity(world_ecs.world_id.Main)
+    local component_camera = camera_follow_component.new(self.url_camera)
+
+    world_ecs.add_component(world_ecs.world_id.Main, entity, component_camera)
 end
 
----@param message_id hash
----@param message table
----@param sender url
-function on_message(self, message_id, message, sender)
-    if message_id == events_service.camera.set_target then
-        self.target = message.id
-    end
-end
+-- -@param message_id hash
+-- -@param message table
+-- -@param sender url
+-- function on_message(self, message_id, message, sender)
+--     if message_id == events_service.camera.set_target then
+--         self.target = message.id
+--     end
+-- end
 
-function update(self, dt)
-    if self.target == nil then
-        return
-    end
-    self.target_pos = go.get_position(self.target)
-    self.distance   = vmath.length_sqr(go.get_position() - self.target_pos)
-    if self.distance < 105 then
-        return
-    end
-    self.camera_pos.z = 10
-    self.camera_pos = vmath.lerp(self.lerp_factor, self.camera_pos, self.target_pos)
-    go.set_position(self.camera_pos, ".")
-end
+-- function update(self, dt)
+--     if self.target == nil then
+--         return
+--     end
+--     self.target_pos = go.get_position(self.target)
+--     self.distance   = vmath.length_sqr(go.get_position() - self.target_pos)
+--     if self.distance < 105 then
+--         return
+--     end
+--     self.camera_pos.z = 10
+--     self.camera_pos = vmath.lerp(self.lerp_factor, self.camera_pos, self.target_pos)
+--     go.set_position(self.camera_pos, ".")
+-- end

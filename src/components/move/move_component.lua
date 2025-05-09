@@ -1,4 +1,4 @@
---- @class MoveComponent
+--- @class MoveComponent1
 --- @field model CharacterModel | BulletModel
 local move_component = {}
 

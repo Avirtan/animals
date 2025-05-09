@@ -39,6 +39,10 @@ function on_message(self, message_id, message, sender)
             input_service.set_input_move(message)
         end
     end
+
+    if message_id == input_service.events.mouse_move then
+        input_service.set_input_touch(message)
+    end
 end
 
 --- @param action on_input.action

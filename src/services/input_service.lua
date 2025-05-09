@@ -13,10 +13,8 @@ local M = {
         fire = hash("fire")
     },
     current_inputs = {
-        move_input = {
-            x = 0,
-            y = 0
-        }
+        move_input = vmath.vector3(0, 0, 0),
+        touch_input = vmath.vector3(0, 0, 0)
     }
 }
 
@@ -104,6 +102,11 @@ function M.set_input_move(message)
     elseif message.action_id == M.input_binding.left and input.x ~= 1 then
         input.x = message.released and 0 or -1
     end
+end
+
+function M.set_input_touch(message)
+    M.current_inputs.touch_input.x = message.x
+    M.current_inputs.touch_input.y = message.y
 end
 
 return M

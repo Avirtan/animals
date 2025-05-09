@@ -65,8 +65,6 @@ function world_ecs.delete_entity(world_id, entity)
         if value.entites[entity] ~= nil then
             value.entites[entity] = false
             value.data[entity] = nil
-            log:info("delete", value.entites)
-            log:info("delete", value.data)
         end
     end
 end
@@ -98,12 +96,25 @@ function world_ecs.add_components(world_id, entity, ...)
 end
 
 --- @param entity any
+function world_ecs.remove_component(world_id, entity, component)
+    local name_component = component.name
+    local world = state.worlds[world_id]
+    local components = world.components[name_component]
+    if components == nil then
+        return
+    end
+    components.entites[entity] = false
+    components.data[entity] = nil
+end
+
+--- @param entity any
 function world_ecs.get_component(world_id, entity, name_component)
     local world = state.worlds[world_id]
     local components = world.components[name_component]
-    if components == nil or components[entity] == nil or not components[entity] then
+    if components == nil or components.data[entity] == nil then
         return nil
     end
+
     return components.data[entity]
 end
 
@@ -114,19 +125,21 @@ function world_ecs.select_component(world_id, ...)
     local components_data = {}
     for i = 1, #components_name do
         components_data = world.components[components_name[i]]
-        if components_data ~= nil then
-            tables[i] = components_data.entites
+        if components_data == nil then
+            return {}
         end
+        tables[i] = components_data.entites
     end
 
     if #tables == 0 then return {} end
 
     local commonIDs = {}
-    for id, value in ipairs(tables[1]) do
+    for id, value in pairs(tables[1]) do
         if value then
             commonIDs[id] = value
         end
     end
+    -- log:info("tables", tables)
 
     for i = 2, #tables do
         local currentTable = tables[i]
