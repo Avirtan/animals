@@ -32,7 +32,7 @@ function aim_moving_system.update(world_id, dt)
         component_aim.tmp_vector.y = y
         local local_position = component_aim.tmp_vector - position_player
         aim_service.draw_cone(position_player, local_position, 40, 100)
-
+        component_aim.current_dir = local_position
         local len = vmath.length_sqr(local_position)
         if len > 10000 then
             local_position = vmath.normalize(local_position) * 100

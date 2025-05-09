@@ -14,6 +14,7 @@ local aim_moving_system = require "src.ecs.systems.aim.aim_moving_system"
 local aim_scaling_system = require "src.ecs.systems.aim.aim_scaling_system"
 local spawn_enemy_system = require "src.ecs.systems.events.spawn_enemy_system"
 local move_system = require "src.ecs.systems.units.move_system"
+local spawn_bullet_system = require "src.ecs.systems.events.spawn_bullet_system"
 
 
 local spawn_player_component = require "src.ecs.components.events.sapwn_units.spawn_player_component"
@@ -48,6 +49,7 @@ function init(self)
     world_ecs.add_system(world_ecs.world_id.Main, aim_scaling_system)
     world_ecs.add_system(world_ecs.world_id.Main, spawn_enemy_system)
     world_ecs.add_system(world_ecs.world_id.Main, move_system)
+    world_ecs.add_system(world_ecs.world_id.Main, spawn_bullet_system)
 
     world_ecs.init_systems(world_ecs.world_id.Main)
 end

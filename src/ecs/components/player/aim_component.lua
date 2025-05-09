@@ -2,6 +2,7 @@
 --- @field url hash
 --- @field last_position vector3
 --- @field tmp_vector vector3
+--- @field current_dir vector3
 local aim_component = {
     name = "aim_component"
 }
@@ -11,6 +12,7 @@ function aim_component.new(url)
     self.url = url
     self.last_position = vmath.vector3(0, 0, 0)
     self.tmp_vector = vmath.vector3(0, 0, 0)
+    self.current_dir = vmath.vector3(0, 0, 0)
     return self
 end
 
