@@ -6,13 +6,13 @@ local character_tag_component = {
 }
 
 function character_tag_component.new_player_tag()
-    local self = setmetatable({}, { __index = character_tag_component })
+    local self = {}
     self.name = character_tag_component.tag_player_name
     return self
 end
 
 function character_tag_component.new_enemy_tag()
-    local self = setmetatable({}, { __index = character_tag_component })
+    local self = {}
     self.name = character_tag_component.tag_enemy_name
     return self
 end

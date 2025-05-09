@@ -5,7 +5,8 @@ local spawn_player_component = {
 }
 
 function spawn_player_component.new(position)
-    local self = setmetatable({}, { __index = spawn_player_component })
+    local self = {} ---setmetatable({}, { __index = spawn_player_component })
+    self.name = spawn_player_component.name
     self.position = position
     return self
 end

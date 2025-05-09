@@ -6,7 +6,8 @@ local unit_controller_component = {
 }
 
 function unit_controller_component.new(url, position)
-    local self = setmetatable({}, { __index = unit_controller_component })
+    local self = {} ---setmetatable({}, { __index = unit_controller_component })
+    self.name = unit_controller_component.name
     self.url = url
     self.position = position or go.get(self.url, "position")
     return self

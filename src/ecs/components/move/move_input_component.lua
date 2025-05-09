@@ -5,7 +5,8 @@ local move_input_component = {
 }
 
 function move_input_component.new()
-    local self = setmetatable({}, { __index = move_input_component })
+    local self = {}
+    self.name = move_input_component.name
     return self
 end
 

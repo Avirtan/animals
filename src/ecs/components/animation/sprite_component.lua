@@ -5,7 +5,8 @@ local sprite_component = {
 }
 
 function sprite_component.new(url)
-    local self = setmetatable({}, { __index = sprite_component })
+    local self = {} ----setmetatable({}, { __index = sprite_component })
+    self.name = sprite_component.name
     self.url = url
     return self
 end
