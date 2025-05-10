@@ -1,4 +1,4 @@
---- @class CharacterTagComponent
+--- @class BulletTagComponent
 local bullet_tag_component = {
     tag_bullet_name = "bullet_tag_component",
 }

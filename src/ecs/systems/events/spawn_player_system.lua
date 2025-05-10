@@ -1,4 +1,5 @@
 local factory_service = require "src.services.levels.factory_service"
+local camera_service = require "src.services.camera_service"
 local units_service = require "src.services.resources.units_service"
 local world_ecs = require "src.ecs.world_ecs"
 local unit_controller_component = require "src.ecs.components.units.unit_controller_component"
@@ -10,6 +11,9 @@ local animation_unit_component = require "src.ecs.components.animation.animation
 local character_tag_component = require "src.ecs.components.tags.character_tag_component"
 local aim_component = require "src.ecs.components.player.aim_component"
 
+
+--- @type CameraModule
+local camera_otho = require "orthographic.camera"
 local log = require("log.log")
 
 local spawn_player_system = {
@@ -39,6 +43,13 @@ function spawn_player_system.update(world_id, dt)
         local component_animation = animation_unit_component.new(units_service.units_type.solder)
         local component_tag = character_tag_component.new_player_tag()
         local component_aim = aim_component.new(url_aim)
+        component_aim.angle_stand = 20
+        component_aim.angle_move = 40
+        component_aim.angle = component_aim.angle_stand
+
+        camera_otho.follow(camera_service.camera_id, player_controller_url,
+            { lerp = 0.05 })
+        camera_otho.deadzone(camera_service.camera_id, 50, 50, 50, 50)
 
         world_ecs.add_components(world_id, entity, component_unit, component_sprite, component_move, component_move_input,
             component_animation, component_tag, component_aim)

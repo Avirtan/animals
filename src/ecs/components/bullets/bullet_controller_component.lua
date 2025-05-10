@@ -10,6 +10,7 @@ function bullet_controller_component.new(url, position)
     self.name = bullet_controller_component.name
     self.url = url
     self.position = position or go.get(self.url, "position")
+    go.set(url, "position", position)
     return self
 end
 

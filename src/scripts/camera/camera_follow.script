@@ -2,6 +2,7 @@ local events_service = require "src.services.events_service"
 local camera_service = require "src.services.camera_service"
 local world_ecs = require "src.ecs.world_ecs"
 local camera_follow_component = require "src.ecs.components.camera.camera_follow_component"
+local camera_tag_component = require "src.ecs.components.tags.camera_tag_component"
 
 go.property("url_camera", msg.url())
 
@@ -10,6 +11,7 @@ function init(self)
     world_ecs.new(world_ecs.world_id.Main)
     local entity = world_ecs.create_entity(world_ecs.world_id.Main)
     local component_camera = camera_follow_component.new(self.url_camera)
+    local component_camera_tag = camera_tag_component.new_camera_tag()
 
-    world_ecs.add_component(world_ecs.world_id.Main, entity, component_camera)
+    world_ecs.add_components(world_ecs.world_id.Main, entity, component_camera, component_camera_tag)
 end

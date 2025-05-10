@@ -1,8 +1,5 @@
 local world_ecs = require "src.ecs.world_ecs"
 local aim_component = require "src.ecs.components.player.aim_component"
-local input_service = require "src.services.input_service"
-local screen_service = require "src.services.screen_service"
-local aim_service = require "src.services.characters.aim_service"
 local move_component = require "src.ecs.components.move.move_component"
 
 local log = require("log.log")

@@ -1,13 +1,11 @@
 --- @class SpawnBulletComponent
---- @field position vector3
 local spawn_bullet_component = {
-    name = "spawn_enemy_component"
+    name = "spawn_bullet_component"
 }
 
-function spawn_bullet_component.new(position)
+function spawn_bullet_component.new()
     local self = {}
     self.name = spawn_bullet_component.name
-    self.position = position
     return self
 end
 

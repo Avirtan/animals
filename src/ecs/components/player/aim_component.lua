@@ -3,6 +3,9 @@
 --- @field last_position vector3
 --- @field tmp_vector vector3
 --- @field current_dir vector3
+--- @field angle number
+--- @field angle_stand number
+--- @field angle_move number
 local aim_component = {
     name = "aim_component"
 }

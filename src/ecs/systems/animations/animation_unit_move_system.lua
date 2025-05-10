@@ -3,6 +3,7 @@ local move_component = require "src.ecs.components.move.move_component"
 local animation_unit_component = require "src.ecs.components.animation.animation_unit_component"
 local sprite_component = require "src.ecs.components.animation.sprite_component"
 local anim_service = require "src.services.characters.animation_service"
+local unit_controller_component = require "src.ecs.components.units.unit_controller_component"
 
 local log = require("log.log")
 
@@ -14,7 +15,7 @@ end
 
 function animation_unit_move_system.update(world_id, dt)
     local entites = world_ecs.select_component(world_id, move_component.name, animation_unit_component.name,
-        sprite_component.name)
+        sprite_component.name, unit_controller_component.name)
 
     for _, entity in ipairs(entites) do
         --- @type MoveComponent

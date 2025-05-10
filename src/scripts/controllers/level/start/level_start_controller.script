@@ -1,24 +1,14 @@
-local event_service_controller = require "src.services.controllers.event_service"
 local level_service = require "src.services.levels.level_service"
 local factory_service = require "src.services.levels.factory_service"
 local events_service = require "src.services.events_service"
-local unit_manager = require "src.managers.unit_manager"
 local world_ecs = require "src.ecs.world_ecs"
 local units_service = require "src.services.resources.units_service"
-
-local spawn_player_system = require "src.ecs.systems.events.spawn_player_system"
-local move_input_system = require "src.ecs.systems.units.move_input_system"
-local animation_unit_move_system = require "src.ecs.systems.animations.animation_unit_move_system"
-local camera_follow_system = require "src.ecs.systems.camera.camera_follow_system"
-local aim_moving_system = require "src.ecs.systems.aim.aim_moving_system"
-local aim_scaling_system = require "src.ecs.systems.aim.aim_scaling_system"
-local spawn_enemy_system = require "src.ecs.systems.events.spawn_enemy_system"
-local move_system = require "src.ecs.systems.units.move_system"
-local spawn_bullet_system = require "src.ecs.systems.events.spawn_bullet_system"
-
+local input_service = require "src.services.input_service"
+local ecs_system_service = require "src.services.ecs.ecs_system_service"
 
 local spawn_player_component = require "src.ecs.components.events.sapwn_units.spawn_player_component"
 local spawn_enemy_component = require "src.ecs.components.events.sapwn_units.spawn_enemy_component"
+local spawn_bullet_component = require "src.ecs.components.events.spawn_bullets.spawn_bullet_component"
 
 go.property("player_factory", msg.url())
 go.property("enemy_factory", msg.url())
@@ -27,6 +17,8 @@ go.property("location_controller", msg.url())
 go.property("camera", msg.url())
 
 function init(self)
+    self.current_url = msg.url()
+
     level_service.set_level_controller(msg.url())
     factory_service.set_factory(factory_service.factory_name.player, self.player_factory)
     factory_service.set_factory(factory_service.factory_name.enemy, self.enemy_factory)
@@ -41,15 +33,16 @@ function init(self)
     local c1 = spawn_enemy_component.new(vmath.vector3(150, 20, 0), units_service.units_type.tank)
     world_ecs.add_component(world_ecs.world_id.Main, entity_spawn_enemy, c1)
 
-    world_ecs.add_system(world_ecs.world_id.Main, spawn_player_system)
-    world_ecs.add_system(world_ecs.world_id.Main, move_input_system)
-    world_ecs.add_system(world_ecs.world_id.Main, animation_unit_move_system)
-    world_ecs.add_system(world_ecs.world_id.Main, camera_follow_system)
-    world_ecs.add_system(world_ecs.world_id.Main, aim_moving_system)
-    world_ecs.add_system(world_ecs.world_id.Main, aim_scaling_system)
-    world_ecs.add_system(world_ecs.world_id.Main, spawn_enemy_system)
-    world_ecs.add_system(world_ecs.world_id.Main, move_system)
-    world_ecs.add_system(world_ecs.world_id.Main, spawn_bullet_system)
-
+    ecs_system_service.init_main_systems(world_ecs.world_id.Main)
     world_ecs.init_systems(world_ecs.world_id.Main)
+
+    input_service.addListener(input_service.events.key, self.current_url)
+end
+
+function on_message(self, message_id, message, sender)
+    if message_id == input_service.events.key and message.action_id == input_service.input_binding.fire and message.pressed then
+        local entity_spawn_bullet = world_ecs.create_entity(world_ecs.world_id.Main)
+        local c1 = spawn_bullet_component.new()
+        world_ecs.add_component(world_ecs.world_id.Main, entity_spawn_bullet, c1)
+    end
 end
