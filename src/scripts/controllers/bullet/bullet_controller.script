@@ -1,0 +1,20 @@
+local world_ecs = require "src.ecs.world_ecs"
+local collision_component = require "src.ecs.components.physics.collision_component"
+local physics_service = require "src.services.physics_service"
+
+go.property("url_sprite", msg.url())
+go.property("entity_id", -1)
+
+function init(self)
+	self.current_url = msg.url()
+	self.id_model    = nil
+end
+
+function on_message(self, message_id, message, sender)
+	local is_physic_event = physics_service.is_physic_message(message_id)
+	if is_physic_event then
+		--- @type CollisionComponent
+		local component = world_ecs.get_component(world_ecs.world_id.Main, self.entity_id, collision_component.name)
+		collision_component.set_collision(component, message_id, message)
+	end
+end

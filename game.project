@@ -31,7 +31,11 @@ default_texture_mag_filter = nearest
 
 [physics]
 use_fixed_timestep = 1
+debug = 1
 
 [profiler]
 track_cpu = 0
+
+[native_extension]
+app_manifest = /App.appmanifest
 

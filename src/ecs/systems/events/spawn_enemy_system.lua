@@ -30,7 +30,7 @@ function spawn_player_system.update(world_id, dt)
         local unit_controller = msg.url(nil, url_enemy, "unit_controller")
         local srpite_url = go.get(unit_controller, "url_sprite")
 
-        local component_unit = unit_controller_component.new(url_enemy, component_spawn.position)
+        local component_unit = unit_controller_component.new(unit_controller, entity, component_spawn.position)
         local component_sprite = sprite_component.new(srpite_url)
         local component_move = move_component.new(50)
         local component_animation = animation_unit_component.new(component_spawn.type_unit)

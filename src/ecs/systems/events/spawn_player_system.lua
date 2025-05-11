@@ -10,6 +10,7 @@ local move_component = require "src.ecs.components.move.move_component"
 local animation_unit_component = require "src.ecs.components.animation.animation_unit_component"
 local character_tag_component = require "src.ecs.components.tags.character_tag_component"
 local aim_component = require "src.ecs.components.player.aim_component"
+local collision_component = require "src.ecs.components.physics.collision_component"
 
 
 --- @type CameraModule
@@ -36,13 +37,15 @@ function spawn_player_system.update(world_id, dt)
         local srpite_url = go.get(unit_controller, "url_sprite")
         local url_aim = url_player_collection["/aim_circle"]
 
-        local component_unit = unit_controller_component.new(player_controller_url, component_spawn.position)
+        local component_unit = unit_controller_component.new(unit_controller, entity, component_spawn.position)
         local component_sprite = sprite_component.new(srpite_url)
         local component_move_input = move_input_component.new()
         local component_move = move_component.new(50)
         local component_animation = animation_unit_component.new(units_service.units_type.solder)
         local component_tag = character_tag_component.new_player_tag()
         local component_aim = aim_component.new(url_aim)
+        local component_collision = collision_component.new()
+
         component_aim.angle_stand = 20
         component_aim.angle_move = 40
         component_aim.angle = component_aim.angle_stand
@@ -52,7 +55,7 @@ function spawn_player_system.update(world_id, dt)
         camera_otho.deadzone(camera_service.camera_id, 50, 50, 50, 50)
 
         world_ecs.add_components(world_id, entity, component_unit, component_sprite, component_move, component_move_input,
-            component_animation, component_tag, component_aim)
+            component_animation, component_tag, component_aim, component_collision)
         world_ecs.delete_entity(world_id, value)
     end
 end

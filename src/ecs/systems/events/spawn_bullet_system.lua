@@ -8,6 +8,7 @@ local move_component = require "src.ecs.components.move.move_component"
 local bullet_tag_component = require "src.ecs.components.tags.bullet_tag_component"
 local aim_component = require "src.ecs.components.player.aim_component"
 local unit_controller_component = require "src.ecs.components.units.unit_controller_component"
+local collision_component = require "src.ecs.components.physics.collision_component"
 
 local log = require("log.log")
 
@@ -43,12 +44,15 @@ function spawn_bullet_system.update(world_id, dt)
         end
         local entity = world_ecs.create_entity(world_id)
         local url_bullet = factory_service.spawn_object_factory(factory_service.factory_name.bullet)
-        local component_bullet = bullet_controller_component.new(url_bullet, posititon)
+
+        local bullet_controller = msg.url(nil, url_bullet, "bullet_controller")
+        local component_bullet = bullet_controller_component.new(bullet_controller, entity, posititon)
         local component_move = move_component.new(50)
         component_move.dir_move = bullets_service.bullet_dir_move(dir_aim, angle)
         local component_tag = bullet_tag_component.new_bullet_tag()
+        local component_collision = collision_component.new()
 
-        world_ecs.add_components(world_id, entity, component_bullet, component_move, component_tag)
+        world_ecs.add_components(world_id, entity, component_bullet, component_move, component_tag, component_collision)
         world_ecs.delete_entity(world_id, value)
     end
 end

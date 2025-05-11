@@ -22,3 +22,16 @@ embedded_components {
   data: "prototype: \"/resources/go/debug/astar/dot.go\"\n"
   ""
 }
+embedded_components {
+  id: "collisionobject"
+  type: "collisionobject"
+  data: "collision_shape: \"/assets/tile_maps/map.tilemap\"\n"
+  "type: COLLISION_OBJECT_TYPE_STATIC\n"
+  "mass: 0.0\n"
+  "friction: 0.1\n"
+  "restitution: 0.5\n"
+  "group: \"map\"\n"
+  "mask: \"player\"\n"
+  "mask: \"bullet\"\n"
+  ""
+}

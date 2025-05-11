@@ -5,12 +5,14 @@ local bullet_controller_component = {
     name = "bullet_controller_component"
 }
 
-function bullet_controller_component.new(url, position)
+function bullet_controller_component.new(url, entity, position)
     local self = {}
     self.name = bullet_controller_component.name
     self.url = url
-    self.position = position or go.get(self.url, "position")
-    go.set(url, "position", position)
+    self.position = position or go.get_position(self.url)
+    go.set_position(position, url)
+    go.set(url, "entity_id", entity)
+
     return self
 end
 

@@ -17,6 +17,11 @@ local M = {
     },
     camera = {
         set_target = hash("set_target_camera")
+    },
+    physics = {
+        collision_response = hash("collision_response"),
+        contact_point_response = hash("contact_point_response"),
+        trigger_response = hash("trigger_response")
     }
 }
 

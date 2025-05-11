@@ -11,6 +11,8 @@ local move_system = require "src.ecs.systems.units.move_system"
 local spawn_bullet_system = require "src.ecs.systems.events.spawn_bullet_system"
 local move_bullet_system = require "src.ecs.systems.bullets.move_bullet_system"
 local check_bullet_position = require "src.ecs.systems.bullets.check_bullet_position"
+local reset_collision_system = require "src.ecs.systems.physics.reset_collision_system"
+local bullet_check_collision = require "src.ecs.systems.bullets.bullet_check_collision"
 
 local M = {}
 
@@ -21,6 +23,8 @@ function M.init_main_systems(world_id)
     M.animation_systems(world_id)
     M.camera_systems(world_id)
     M.bullet_systems(world_id)
+
+    M.reset_systems(world_id)
 end
 
 function M.spawn_systems(world_id)
@@ -50,6 +54,11 @@ end
 
 function M.bullet_systems(world_id)
     world_ecs.add_system(world_id, check_bullet_position)
+    world_ecs.add_system(world_id, bullet_check_collision)
+end
+
+function M.reset_systems(world_id)
+    world_ecs.add_system(world_id, reset_collision_system)
 end
 
 return M
