@@ -22,6 +22,9 @@ function bullet_check_collision.update(world_id, dt)
             if component_collision.other_group == hash("map") then
                 go.delete(component_bullet.url)
                 world_ecs.delete_entity(world_id, entity)
+            elseif component_collision.other_group == hash("enemy") then
+                go.delete(component_bullet.url)
+                world_ecs.delete_entity(world_id, entity)
             end
         end
     end

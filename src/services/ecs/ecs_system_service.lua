@@ -7,12 +7,15 @@ local camera_follow_system = require "src.ecs.systems.camera.camera_follow_syste
 local aim_moving_system = require "src.ecs.systems.aim.aim_moving_system"
 local aim_scaling_system = require "src.ecs.systems.aim.aim_scaling_system"
 local spawn_enemy_system = require "src.ecs.systems.events.spawn_enemy_system"
-local move_system = require "src.ecs.systems.units.move_system"
+local move_astar_system = require "src.ecs.systems.units.move_astar_system"
 local spawn_bullet_system = require "src.ecs.systems.events.spawn_bullet_system"
 local move_bullet_system = require "src.ecs.systems.bullets.move_bullet_system"
 local check_bullet_position = require "src.ecs.systems.bullets.check_bullet_position"
 local reset_collision_system = require "src.ecs.systems.physics.reset_collision_system"
 local bullet_check_collision = require "src.ecs.systems.bullets.bullet_check_collision"
+local select_target_player_system = require "src.ecs.systems.targets.select_target_player_system"
+local astar_calculate_path_system = require "src.ecs.systems.astar.astar_calculate_path_system"
+
 
 local M = {}
 
@@ -23,7 +26,8 @@ function M.init_main_systems(world_id)
     M.animation_systems(world_id)
     M.camera_systems(world_id)
     M.bullet_systems(world_id)
-
+    M.select_target_systems(world_id)
+    --- это должно быть в конце
     M.reset_systems(world_id)
 end
 
@@ -34,9 +38,11 @@ function M.spawn_systems(world_id)
 end
 
 function M.move_systems(world_id)
+    world_ecs.add_system(world_id, astar_calculate_path_system)
+
     world_ecs.add_system(world_id, move_input_system)
     world_ecs.add_system(world_id, aim_moving_system)
-    world_ecs.add_system(world_id, move_system)
+    world_ecs.add_system(world_id, move_astar_system)
     world_ecs.add_system(world_id, move_bullet_system)
 end
 
@@ -55,6 +61,10 @@ end
 function M.bullet_systems(world_id)
     world_ecs.add_system(world_id, check_bullet_position)
     world_ecs.add_system(world_id, bullet_check_collision)
+end
+
+function M.select_target_systems(world_id)
+    world_ecs.add_system(world_id, select_target_player_system)
 end
 
 function M.reset_systems(world_id)

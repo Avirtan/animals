@@ -1,7 +1,9 @@
 local tilemap_service = require "src.services.map.tilemap_service"
 local screen_service = require "src.services.screen_service"
 
-local M = {}
+local M = {
+    delay_update = 1.5
+}
 
 local state = {
     map = {},
