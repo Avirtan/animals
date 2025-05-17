@@ -6,14 +6,6 @@ instances {
 instances {
   id: "level_start"
   prototype: "/resources/go/level/level_start.go"
-  component_properties {
-    id: "level_start_controller"
-    properties {
-      id: "camera"
-      value: "/camera_follow#camera"
-      type: PROPERTY_TYPE_URL
-    }
-  }
 }
 instances {
   id: "game_controller"
@@ -27,3 +19,11 @@ instances {
   }
 }
 scale_along_z: 0
+embedded_instances {
+  id: "gui"
+  data: "components {\n"
+  "  id: \"game_gui\"\n"
+  "  component: \"/resources/gui/game_gui.gui\"\n"
+  "}\n"
+  ""
+}

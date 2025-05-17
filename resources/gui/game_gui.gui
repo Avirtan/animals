@@ -1,0 +1,114 @@
+script: "/src/gui/screen/game.gui_script"
+fonts {
+  name: "font"
+  font: "/assets/fonts/font.font"
+}
+nodes {
+  position {
+    x: 1161.0
+    y: 740.0
+  }
+  size {
+    x: 1400.0
+    y: 100.0
+  }
+  type: TYPE_BOX
+  id: "root"
+  xanchor: XANCHOR_LEFT
+  yanchor: YANCHOR_TOP
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  type: TYPE_TEMPLATE
+  id: "weapon_panel"
+  parent: "root"
+  inherit_alpha: true
+  template: "/resources/gui/panels/weapon_panel/weapon_panel.gui"
+}
+nodes {
+  type: TYPE_BOX
+  id: "weapon_panel/root"
+  parent: "weapon_panel"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEMPLATE
+  id: "weapon_panel/weapon_item"
+  parent: "weapon_panel/root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "weapon_panel/weapon_item/root"
+  parent: "weapon_panel/weapon_item"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  id: "weapon_panel/weapon_item/name_weapon"
+  parent: "weapon_panel/weapon_item/root"
+  template_node_child: true
+}
+material: "/builtins/materials/gui.material"
+layouts {
+  name: "Landscape"
+  nodes {
+    position {
+      x: 640.0
+      y: 360.0
+    }
+    size {
+      x: 1280.0
+      y: 720.0
+    }
+    type: TYPE_BOX
+    id: "root"
+    adjust_mode: ADJUST_MODE_STRETCH
+    overridden_fields: 1
+    overridden_fields: 4
+    overridden_fields: 12
+    overridden_fields: 13
+    overridden_fields: 17
+    overridden_fields: 46
+    visible: false
+  }
+  nodes {
+    type: TYPE_TEMPLATE
+    id: "weapon_panel"
+    parent: "root"
+    overridden_fields: 30
+  }
+  nodes {
+    position {
+      y: -301.0
+    }
+    type: TYPE_BOX
+    id: "weapon_panel/root"
+    parent: "weapon_panel"
+    overridden_fields: 1
+    template_node_child: true
+  }
+}
+layouts {
+  name: "Portrait"
+  nodes {
+    position {
+      x: 360.0
+      y: 640.0
+    }
+    size {
+      x: 720.0
+      y: 1280.0
+    }
+    type: TYPE_BOX
+    id: "root"
+    adjust_mode: ADJUST_MODE_STRETCH
+    overridden_fields: 1
+    overridden_fields: 4
+    overridden_fields: 17
+    overridden_fields: 46
+    visible: false
+  }
+}
+adjust_reference: ADJUST_REFERENCE_PARENT

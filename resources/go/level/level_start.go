@@ -21,6 +21,11 @@ components {
     value: "#location_start_controller"
     type: PROPERTY_TYPE_URL
   }
+  properties {
+    id: "camera"
+    value: "/camera_follow#camera"
+    type: PROPERTY_TYPE_URL
+  }
 }
 components {
   id: "location_start_controller"

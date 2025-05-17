@@ -1,0 +1,42 @@
+nodes {
+  size {
+    x: 600.0
+    y: 100.0
+  }
+  color {
+    x: 0.0
+    y: 0.2
+    z: 0.2
+  }
+  type: TYPE_BOX
+  id: "root"
+  xanchor: XANCHOR_LEFT
+  yanchor: YANCHOR_BOTTOM
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  type: TYPE_TEMPLATE
+  id: "weapon_item"
+  parent: "root"
+  inherit_alpha: true
+  template: "/resources/gui/panels/weapon_panel/items/weapon_item.gui"
+  enabled: false
+}
+nodes {
+  type: TYPE_BOX
+  id: "weapon_item/root"
+  parent: "weapon_item"
+  overridden_fields: 14
+  overridden_fields: 45
+  template_node_child: true
+  enabled: false
+}
+nodes {
+  type: TYPE_TEXT
+  id: "weapon_item/name_weapon"
+  parent: "weapon_item/root"
+  template_node_child: true
+}
+material: "/builtins/materials/gui.material"
+adjust_reference: ADJUST_REFERENCE_PARENT

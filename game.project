@@ -9,6 +9,7 @@ width = 1280
 height = 800
 high_dpi = 1
 display_device_info = 0
+display_profiles = /resources/display_profile/profile.display_profilesc
 
 [android]
 input_method = HiddenInputField
@@ -19,11 +20,10 @@ scale_mode = stretch
 [project]
 title = animals_battler
 dependencies#0 = https://github.com/selimanac/defold-astar/archive/refs/heads/master.zip
-dependencies#1 = https://github.com/Insality/druid/archive/refs/tags/1.1.0.zip
-dependencies#2 = https://github.com/Insality/defold-event/archive/refs/tags/11.zip
-dependencies#3 = https://github.com/AGulev/drawpixels/archive/refs/tags/2.0.2.zip
-dependencies#4 = https://github.com/Insality/defold-log/archive/refs/tags/5.zip
-dependencies#5 = https://github.com/britzl/defold-orthographic/archive/master.zip
+dependencies#1 = https://github.com/Insality/defold-event/archive/refs/tags/11.zip
+dependencies#2 = https://github.com/Insality/defold-log/archive/refs/tags/5.zip
+dependencies#3 = https://github.com/britzl/defold-orthographic/archive/master.zip
+dependencies#4 = https://github.com/Insality/druid/archive/refs/tags/1.1.0.zip
 
 [graphics]
 default_texture_min_filter = nearest

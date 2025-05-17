@@ -1,0 +1,31 @@
+--- @type druid
+local druid = require("druid.druid")
+local weapon_panel_widget = require("src.gui.panels.weapon_panel.weapon_panel")
+local game_gui_service = require "src.services.gui.game_gui_service"
+
+--- @class GameGui
+--- @field druid druid.instance
+--- @field weapon_panel weapon_panel
+
+---@param self GameGui
+function init(self)
+	game_gui_service.set_camera(self)
+	self.druid = druid.new(self)
+	self.weapon_panel = self.druid:new_widget(weapon_panel_widget, "weapon_panel", nil)
+end
+
+function final(self)
+	self.druid:final()
+end
+
+function update(self, dt)
+	self.druid:update(dt)
+end
+
+function on_message(self, message_id, message, sender)
+	self.druid:on_message(message_id, message, sender)
+end
+
+function on_input(self, action_id, action)
+	return self.druid:on_input(action_id, action)
+end
