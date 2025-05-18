@@ -1,0 +1,24 @@
+local world_ecs = require "src.ecs.world_ecs"
+local events_service = require "src.services.events_service"
+local aim_selected_component = require "src.ecs.components.player.aim_selected_component"
+local log = require("log.log")
+
+go.property("entity_id", -1)
+
+function init(self)
+	self.current_url = msg.url()
+	self.id_model    = nil
+end
+
+function on_message(self, message_id, message, sender)
+	if message_id == events_service.physics.trigger_response then
+		--- @type AimSelectedComponent
+		local component = world_ecs.get_component(world_ecs.world_id.Main, self.entity_id, aim_selected_component.name)
+		local id_enemy = message.other_id
+		if message.enter then
+			component.targets[id_enemy] = message.other_id
+		else
+			component.targets[id_enemy] = nil
+		end
+	end
+end

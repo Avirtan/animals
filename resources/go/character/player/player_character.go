@@ -10,7 +10,7 @@ components {
 embedded_components {
   id: "sprite_character"
   type: "sprite"
-  data: "default_animation: \"idle\"\n"
+  data: "default_animation: \"solder_idle\"\n"
   "material: \"/builtins/materials/sprite.material\"\n"
   "textures {\n"
   "  sampler: \"texture_sampler\"\n"

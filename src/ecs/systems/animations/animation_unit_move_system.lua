@@ -2,7 +2,7 @@ local world_ecs = require "src.ecs.world_ecs"
 local move_component = require "src.ecs.components.move.move_component"
 local animation_unit_component = require "src.ecs.components.animation.animation_unit_component"
 local sprite_component = require "src.ecs.components.animation.sprite_component"
-local anim_service = require "src.services.units.animation_service"
+local units_service = require "src.services.units.units_service"
 local unit_controller_component = require "src.ecs.components.units.unit_controller_component"
 
 local log = require("log.log")
@@ -24,8 +24,29 @@ function animation_unit_move_system.update(world_id, dt)
         local component_animation = world_ecs.get_component(world_id, entity, animation_unit_component.name)
         --- @type SpriteComponent
         local component_sprit = world_ecs.get_component(world_id, entity, sprite_component.name)
+        --- @type UnitControllerComponent
+        local component_controller = world_ecs.get_component(world_id, entity, unit_controller_component.name)
 
-        local animation = anim_service.get_move_animation(component_move.dir_move, component_animation.type_unit)
+        local animations = units_service.get_animation_move()
+
+        local dir = component_move.dir_move
+        local animation = units_service.get_cache_animation(component_controller.unit_config.animation_key,
+            animations.idle)
+        local isXmore = math.abs(dir.x) > math.abs(dir.y)
+        if dir.x > 0 and isXmore then
+            animation = units_service.get_cache_animation(component_controller.unit_config.animation_key,
+                animations.right)
+        elseif dir.x < 0 and isXmore then
+            animation = units_service.get_cache_animation(component_controller.unit_config.animation_key,
+                animations.left)
+        elseif dir.y > 0 then
+            animation = units_service.get_cache_animation(component_controller.unit_config.animation_key,
+                animations.up)
+        elseif dir.y < 0 then
+            animation = units_service.get_cache_animation(component_controller.unit_config.animation_key,
+                animations.down)
+        end
+
         if component_animation.current_animation ~= animation then
             sprite.play_flipbook(component_sprit.url, animation)
             component_animation.current_animation = animation

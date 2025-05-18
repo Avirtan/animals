@@ -1,8 +1,7 @@
 local level_service = require "src.services.levels.level_service"
 local factory_service = require "src.services.levels.factory_service"
-local events_service = require "src.services.events_service"
 local world_ecs = require "src.ecs.world_ecs"
-local units_service = require "src.services.resources.units_service"
+local units_service = require "src.services.units.units_service"
 local input_service = require "src.services.input_service"
 local ecs_system_service = require "src.services.ecs.ecs_system_service"
 
@@ -26,13 +25,22 @@ function init(self)
     factory_service.set_factory(factory_service.factory_name.bullet, self.bullet_factory)
 
     local world = world_ecs.new(world_ecs.world_id.Main)
-    local entity_spawn_player = world_ecs.create_entity(world_ecs.world_id.Main)
-    -- local entity_spawn_enemy = world_ecs.create_entity(world_ecs.world_id.Main)
 
-    local c1 = spawn_player_component.new(vmath.vector3(50, 50, 0))
+    local entity_spawn_player = world_ecs.create_entity(world_ecs.world_id.Main)
+    local c1 = spawn_player_component.new(vmath.vector3(50, 50, 0), units_service.units_key.solder)
     world_ecs.add_component(world_ecs.world_id.Main, entity_spawn_player, c1)
-    -- local c1 = spawn_enemy_component.new(vmath.vector3(150, 20, 0), units_service.units_type.tank)
-    -- world_ecs.add_component(world_ecs.world_id.Main, entity_spawn_enemy, c1)
+
+    local entity_spawn_enemy = world_ecs.create_entity(world_ecs.world_id.Main)
+    local c1 = spawn_enemy_component.new(vmath.vector3(150, 20, 0), units_service.units_key.solder)
+    world_ecs.add_component(world_ecs.world_id.Main, entity_spawn_enemy, c1)
+
+    local entity_spawn_enemy = world_ecs.create_entity(world_ecs.world_id.Main)
+    local c1 = spawn_enemy_component.new(vmath.vector3(150, 40, 0), units_service.units_key.solder)
+    world_ecs.add_component(world_ecs.world_id.Main, entity_spawn_enemy, c1)
+
+    local entity_spawn_enemy = world_ecs.create_entity(world_ecs.world_id.Main)
+    local c1 = spawn_enemy_component.new(vmath.vector3(250, 50, 0), units_service.units_key.solder)
+    world_ecs.add_component(world_ecs.world_id.Main, entity_spawn_enemy, c1)
 
     ecs_system_service.init_main_systems(world_ecs.world_id.Main)
     world_ecs.init_systems(world_ecs.world_id.Main)
@@ -41,9 +49,9 @@ function init(self)
 end
 
 function on_message(self, message_id, message, sender)
-    if message_id == input_service.events.key and message.action_id == input_service.input_binding.fire and message.pressed then
-        local entity_spawn_bullet = world_ecs.create_entity(world_ecs.world_id.Main)
-        local c1 = spawn_bullet_component.new()
-        world_ecs.add_component(world_ecs.world_id.Main, entity_spawn_bullet, c1)
-    end
+    -- if message_id == input_service.events.key and message.action_id == input_service.input_binding.fire and message.pressed then
+    --     local entity_spawn_bullet = world_ecs.create_entity(world_ecs.world_id.Main)
+    --     local c1 = spawn_bullet_component.new()
+    --     world_ecs.add_component(world_ecs.world_id.Main, entity_spawn_bullet, c1)
+    -- end
 end

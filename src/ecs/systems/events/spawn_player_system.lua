@@ -1,6 +1,6 @@
 local factory_service = require "src.services.levels.factory_service"
 local camera_service = require "src.services.camera_service"
-local units_service = require "src.services.resources.units_service"
+local units_service = require "src.services.units.units_service"
 local world_ecs = require "src.ecs.world_ecs"
 local unit_controller_component = require "src.ecs.components.units.unit_controller_component"
 local sprite_component = require "src.ecs.components.animation.sprite_component"
@@ -11,6 +11,8 @@ local animation_unit_component = require "src.ecs.components.animation.animation
 local character_tag_component = require "src.ecs.components.tags.character_tag_component"
 local aim_component = require "src.ecs.components.player.aim_component"
 local collision_component = require "src.ecs.components.physics.collision_component"
+local aim_controller_component = require "src.ecs.components.player.aim_controller_component"
+local aim_selected_component = require "src.ecs.components.player.aim_selected_component"
 
 
 --- @type CameraModule
@@ -36,15 +38,21 @@ function spawn_player_system.update(world_id, dt)
         local unit_controller = msg.url(nil, player_controller_url, "unit_controller")
         local srpite_url = go.get(unit_controller, "url_sprite")
         local url_aim = url_player_collection["/aim_circle"]
+        local aim_controller = msg.url(nil, url_aim, "aim_controller")
 
-        local component_unit = unit_controller_component.new(unit_controller, entity, component_spawn.position)
+        local unit_config = units_service.get_unit_config(component_spawn.type_unit)
+
+        local component_unit = unit_controller_component.new(unit_controller, entity, component_spawn.position,
+            unit_config)
         local component_sprite = sprite_component.new(srpite_url)
         local component_move_input = move_input_component.new()
         local component_move = move_component.new(50)
-        local component_animation = animation_unit_component.new(units_service.units_type.solder)
+        local component_animation = animation_unit_component.new()
         local component_tag = character_tag_component.new_player_tag()
         local component_aim = aim_component.new(url_aim)
         local component_collision = collision_component.new()
+        local component_aim_controller = aim_controller_component.new(aim_controller, entity)
+        local component_aim_selected = aim_selected_component.new()
 
         component_aim.angle_stand = 20
         component_aim.angle_move = 40
@@ -55,7 +63,8 @@ function spawn_player_system.update(world_id, dt)
         camera_otho.deadzone(camera_service.camera_id, 50, 50, 50, 50)
 
         world_ecs.add_components(world_id, entity, component_unit, component_sprite, component_move, component_move_input,
-            component_animation, component_tag, component_aim, component_collision)
+            component_animation, component_tag, component_aim, component_collision, component_aim_controller,
+            component_aim_selected)
         world_ecs.delete_entity(world_id, value)
     end
 end

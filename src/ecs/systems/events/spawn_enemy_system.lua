@@ -8,6 +8,7 @@ local animation_unit_component = require "src.ecs.components.animation.animation
 local character_tag_component = require "src.ecs.components.tags.character_tag_component"
 local target_component = require "src.ecs.components.targets.target_component"
 local move_astar_component = require "src.ecs.components.move.move_astar_component"
+local units_service = require "src.services.units.units_service"
 
 local log = require("log.log")
 
@@ -28,11 +29,13 @@ function spawn_player_system.update(world_id, dt)
         local url_enemy = factory_service.spawn_object_factory(factory_service.factory_name.enemy)
         local unit_controller = msg.url(nil, url_enemy, "unit_controller")
         local srpite_url = go.get(unit_controller, "url_sprite")
+        local unit_config = units_service.get_unit_config(component_spawn.type_unit)
 
-        local component_unit = unit_controller_component.new(unit_controller, entity, component_spawn.position)
+        local component_unit = unit_controller_component.new(unit_controller, entity, component_spawn.position,
+            unit_config)
         local component_sprite = sprite_component.new(srpite_url)
-        local component_move = move_component.new(50)
-        local component_animation = animation_unit_component.new(component_spawn.type_unit)
+        local component_move = move_component.new(0)
+        local component_animation = animation_unit_component.new()
         local component_tag = character_tag_component.new_enemy_tag()
         local component_target = target_component.new()
         local component_astar = move_astar_component.new()

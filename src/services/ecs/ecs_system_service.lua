@@ -10,11 +10,12 @@ local spawn_enemy_system = require "src.ecs.systems.events.spawn_enemy_system"
 local move_astar_system = require "src.ecs.systems.units.move_astar_system"
 local spawn_bullet_system = require "src.ecs.systems.events.spawn_bullet_system"
 local move_bullet_system = require "src.ecs.systems.bullets.move_bullet_system"
-local check_bullet_position = require "src.ecs.systems.bullets.check_bullet_position"
+local check_bullet_position = require "src.ecs.systems.bullets.check_bullet_position_system"
 local reset_collision_system = require "src.ecs.systems.physics.reset_collision_system"
-local bullet_check_collision = require "src.ecs.systems.bullets.bullet_check_collision"
+local bullet_check_collision = require "src.ecs.systems.bullets.bullet_check_collision_system"
 local select_target_player_system = require "src.ecs.systems.targets.select_target_player_system"
 local astar_calculate_path_system = require "src.ecs.systems.astar.astar_calculate_path_system"
+local weapon_shoot_system = require "src.ecs.systems.weapon.weapon_shoot_system"
 
 
 local M = {}
@@ -27,6 +28,7 @@ function M.init_main_systems(world_id)
     M.camera_systems(world_id)
     M.bullet_systems(world_id)
     M.select_target_systems(world_id)
+    M.weapon_system(world_id)
     --- это должно быть в конце
     M.reset_systems(world_id)
 end
@@ -69,6 +71,10 @@ end
 
 function M.reset_systems(world_id)
     world_ecs.add_system(world_id, reset_collision_system)
+end
+
+function M.weapon_system(world_id)
+    world_ecs.add_system(world_id, weapon_shoot_system)
 end
 
 return M

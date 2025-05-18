@@ -1,3 +1,7 @@
+components {
+  id: "aim_controller"
+  component: "/src/scripts/controllers/player/aim_controller.script"
+}
 embedded_components {
   id: "circle_sprite"
   type: "sprite"
@@ -19,4 +23,27 @@ embedded_components {
     x: 0.2
     y: 0.2
   }
+}
+embedded_components {
+  id: "aim_collision"
+  type: "collisionobject"
+  data: "type: COLLISION_OBJECT_TYPE_TRIGGER\n"
+  "mass: 0.0\n"
+  "friction: 0.1\n"
+  "restitution: 0.5\n"
+  "group: \"aim\"\n"
+  "mask: \"enemy\"\n"
+  "embedded_collision_shape {\n"
+  "  shapes {\n"
+  "    shape_type: TYPE_SPHERE\n"
+  "    position {\n"
+  "    }\n"
+  "    rotation {\n"
+  "    }\n"
+  "    index: 0\n"
+  "    count: 1\n"
+  "  }\n"
+  "  data: 50.0\n"
+  "}\n"
+  ""
 }

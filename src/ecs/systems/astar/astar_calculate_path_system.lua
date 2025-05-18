@@ -63,7 +63,7 @@ function astar_calculate_path_system.calculate_path(component_target, component_
             local x, y                   = screen_service.tile_to_world(tile.x, tile.y);
             component_astar.paths[index] = { x, y }
         end
-        astar_service.show_points_debug(component_controller.url, path)
+        -- astar_service.show_points_debug(component_controller.url, path)
         component_astar.current_index_point = 2
         component_astar.next_point.x = 0
         component_astar.next_point.y = 0

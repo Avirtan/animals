@@ -22,10 +22,6 @@ function M:click()
     self.on_click:trigger(self.index)
 end
 
-function M:open_widget()
-    print("Open widget pressed")
-end
-
 function M:select()
     gui.set_color(self.root, vmath.vector4(1, 0, 0, 1))
 end

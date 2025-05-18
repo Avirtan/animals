@@ -11,7 +11,8 @@ local aim_component = {
 }
 
 function aim_component.new(url)
-    local self = setmetatable({}, { __index = aim_component })
+    local self = {}
+    self.name = aim_component.name
     self.url = url
     self.last_position = vmath.vector3(0, 0, 0)
     self.tmp_vector = vmath.vector3(0, 0, 0)

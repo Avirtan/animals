@@ -1,5 +1,5 @@
 local factory_service = require "src.services.levels.factory_service"
-local bullets_service = require "src.services.bullets.bullets_service"
+local bullets_service = require "src.services.weapon.bullets_service"
 
 local world_ecs = require "src.ecs.world_ecs"
 local bullet_controller_component = require "src.ecs.components.bullets.bullet_controller_component"
