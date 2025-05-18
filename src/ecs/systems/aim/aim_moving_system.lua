@@ -3,7 +3,7 @@ local aim_component = require "src.ecs.components.player.aim_component"
 local input_service = require "src.services.input_service"
 local screen_service = require "src.services.screen_service"
 local unit_controller_component = require "src.ecs.components.units.unit_controller_component"
-local aim_service = require "src.services.characters.aim_service"
+local aim_service = require "src.services.units.aim_service"
 local move_component = require "src.ecs.components.move.move_component"
 local camera_service = require "src.services.camera_service"
 

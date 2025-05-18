@@ -2,7 +2,7 @@ local world_ecs = require "src.ecs.world_ecs"
 local move_component = require "src.ecs.components.move.move_component"
 local animation_unit_component = require "src.ecs.components.animation.animation_unit_component"
 local sprite_component = require "src.ecs.components.animation.sprite_component"
-local anim_service = require "src.services.characters.animation_service"
+local anim_service = require "src.services.units.animation_service"
 local unit_controller_component = require "src.ecs.components.units.unit_controller_component"
 
 local log = require("log.log")

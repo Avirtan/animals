@@ -1,5 +1,5 @@
-local tilemap_service = require "src.services.map.tilemap_service"
-local astar_service = require "src.services.map.astar_service"
+local tilemap_service = require "src.services.levels.tilemap_service"
+local astar_service = require "src.services.levels.astar_service"
 local event_service_controller = require "src.services.controllers.event_service"
 
 go.property("url_map", msg.url())

@@ -19,6 +19,7 @@ scale_mode = stretch
 
 [project]
 title = animals_battler
+custom_resources = resources/configs/
 dependencies#0 = https://github.com/selimanac/defold-astar/archive/refs/heads/master.zip
 dependencies#1 = https://github.com/Insality/defold-event/archive/refs/tags/11.zip
 dependencies#2 = https://github.com/Insality/defold-log/archive/refs/tags/5.zip

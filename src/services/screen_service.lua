@@ -1,5 +1,5 @@
 local camera_service = require "src.services.camera_service"
-local tilemap_service = require "src.services.map.tilemap_service"
+local tilemap_service = require "src.services.levels.tilemap_service"
 
 local M = {}
 

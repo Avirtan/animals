@@ -19,7 +19,7 @@ function M:post_init(event, index, text)
 end
 
 function M:click()
-    self.on_click:trigger(self.index, "test")
+    self.on_click:trigger(self.index)
 end
 
 function M:open_widget()

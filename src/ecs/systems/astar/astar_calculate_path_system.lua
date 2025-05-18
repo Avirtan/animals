@@ -3,7 +3,7 @@ local move_astar_component        = require "src.ecs.components.move.move_astar_
 local target_component            = require "src.ecs.components.targets.target_component"
 local screen_service              = require "src.services.screen_service"
 local unit_controller_component   = require "src.ecs.components.units.unit_controller_component"
-local astar_service               = require "src.services.map.astar_service"
+local astar_service               = require "src.services.levels.astar_service"
 
 local log                         = require("log.log")
 

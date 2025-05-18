@@ -1,4 +1,4 @@
-local tilemap_service = require "src.services.map.tilemap_service"
+local tilemap_service = require "src.services.levels.tilemap_service"
 local screen_service = require "src.services.screen_service"
 
 local M = {
