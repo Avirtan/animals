@@ -7,7 +7,7 @@ local ecs_system_service = require "src.services.ecs.ecs_system_service"
 
 local spawn_player_component = require "src.ecs.components.events.sapwn_units.spawn_player_component"
 local spawn_enemy_component = require "src.ecs.components.events.sapwn_units.spawn_enemy_component"
-local spawn_bullet_component = require "src.ecs.components.events.spawn_bullets.spawn_bullet_component"
+local change_weapon_component = require "src.ecs.components.events.weapon.change_weapon_component"
 
 go.property("player_factory", msg.url())
 go.property("enemy_factory", msg.url())
@@ -30,6 +30,10 @@ function init(self)
     local c1 = spawn_player_component.new(vmath.vector3(50, 50, 0), units_service.units_key.solder)
     world_ecs.add_component(world_ecs.world_id.Main, entity_spawn_player, c1)
 
+    local entity_change_weapon = world_ecs.create_entity(world_ecs.world_id.Main)
+    local c2 = change_weapon_component.new(2)
+    world_ecs.add_component(world_ecs.world_id.Main, entity_change_weapon, c2)
+
     local entity_spawn_enemy = world_ecs.create_entity(world_ecs.world_id.Main)
     local c1 = spawn_enemy_component.new(vmath.vector3(150, 20, 0), units_service.units_key.solder)
     world_ecs.add_component(world_ecs.world_id.Main, entity_spawn_enemy, c1)
@@ -49,9 +53,5 @@ function init(self)
 end
 
 function on_message(self, message_id, message, sender)
-    -- if message_id == input_service.events.key and message.action_id == input_service.input_binding.fire and message.pressed then
-    --     local entity_spawn_bullet = world_ecs.create_entity(world_ecs.world_id.Main)
-    --     local c1 = spawn_bullet_component.new()
-    --     world_ecs.add_component(world_ecs.world_id.Main, entity_spawn_bullet, c1)
-    -- end
+
 end

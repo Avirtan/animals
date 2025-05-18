@@ -1,11 +1,12 @@
 local world_ecs = require "src.ecs.world_ecs"
 local aim_component = require "src.ecs.components.player.aim_component"
 local input_service = require "src.services.input_service"
-local screen_service = require "src.services.screen_service"
+local weapons_service = require "src.services.weapon.weapons_service"
 local unit_controller_component = require "src.ecs.components.units.unit_controller_component"
 local aim_service = require "src.services.units.aim_service"
 local move_component = require "src.ecs.components.move.move_component"
 local camera_service = require "src.services.camera_service"
+local weapon_component = require "src.ecs.components.weapon.weapon_component"
 
 local log = require("log.log")
 
@@ -17,7 +18,7 @@ end
 
 function aim_moving_system.update(world_id, dt)
     local entites = world_ecs.select_component(world_id, aim_component.name, unit_controller_component.name,
-        move_component.name)
+        move_component.name, weapon_component.name)
 
     for _, entity in ipairs(entites) do
         --- @type AimComponent
@@ -26,11 +27,19 @@ function aim_moving_system.update(world_id, dt)
         local component_unit = world_ecs.get_component(world_id, entity, unit_controller_component.name)
         --- @type MoveComponent
         local component_move = world_ecs.get_component(world_id, entity, move_component.name)
+        --- @type WeaponComponent
+        local component_weapon = world_ecs.get_component(world_id, entity, weapon_component.name)
 
-        local angle = component_aim.angle_stand
-        if component_move.dir_move.x ~= 0 or component_move.dir_move.y ~= 0 then
-            angle = component_aim.angle_move
+        if component_weapon.weapon_id == nil then
+            return
         end
+
+        local data_weapon = component_weapon.cached_data
+        local angle = data_weapon.angle
+        if component_move.dir_move.x ~= 0 or component_move.dir_move.y ~= 0 then
+            angle = data_weapon.move_angle
+        end
+
         component_aim.angle = angle
         local touch_position = input_service.current_inputs.touch_input
 

@@ -26,7 +26,8 @@ function move_input_system.update(world_id, dt)
         local component_collision = world_ecs.get_component(world_id, entity, collision_component.name)
 
         local dir_move = input_service.current_inputs.move_input
-        if dir_move.x ~= 0 or dir_move.y ~= 0 then
+        component_move.is_moving = dir_move.x ~= 0 or dir_move.y ~= 0
+        if component_move.is_moving then
             dir_move = vmath.normalize(dir_move)
             if component_collision.is_collide then
                 local dot_product = vmath.dot(dir_move, component_collision.normal)

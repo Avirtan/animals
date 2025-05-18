@@ -16,6 +16,7 @@ local bullet_check_collision = require "src.ecs.systems.bullets.bullet_check_col
 local select_target_player_system = require "src.ecs.systems.targets.select_target_player_system"
 local astar_calculate_path_system = require "src.ecs.systems.astar.astar_calculate_path_system"
 local weapon_shoot_system = require "src.ecs.systems.weapon.weapon_shoot_system"
+local change_weapon_system = require "src.ecs.systems.events.change_weapon_system"
 
 
 local M = {}
@@ -75,6 +76,7 @@ end
 
 function M.weapon_system(world_id)
     world_ecs.add_system(world_id, weapon_shoot_system)
+    world_ecs.add_system(world_id, change_weapon_system)
 end
 
 return M

@@ -1,6 +1,7 @@
 local world_ecs = require "src.ecs.world_ecs"
 local aim_selected_component = require "src.ecs.components.player.aim_selected_component"
 local spawn_bullet_component = require "src.ecs.components.events.spawn_bullets.spawn_bullet_component"
+local weapon_component = require "src.ecs.components.weapon.weapon_component"
 
 local weapon_shoot_system = {
 }
@@ -9,11 +10,17 @@ function weapon_shoot_system.init(world_id)
 end
 
 function weapon_shoot_system.update(world_id, dt)
-    local entites = world_ecs.select_component(world_id, aim_selected_component.name)
+    local entites = world_ecs.select_component(world_id, aim_selected_component.name, weapon_component.name)
 
     for _, entity in ipairs(entites) do
         --- @type AimSelectedComponent
         local component_aim_selected = world_ecs.get_component(world_id, entity, aim_selected_component.name)
+        --- @type WeaponComponent
+        local component_weapon = world_ecs.get_component(world_id, entity, weapon_component.name)
+        if component_weapon.weapon_id == nil then
+            return
+        end
+
         local is_exist = false
         for k in pairs(component_aim_selected.targets) do
             is_exist = true

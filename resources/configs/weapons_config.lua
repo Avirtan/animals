@@ -1,5 +1,6 @@
 ---@class WeaponConfigData
----@field id integer               # Уникальный идентификатор оружия
+---@field id integer              # Уникальный идентификатор оружия
+---@field name string             # Название оружия
 ---@field damage integer          # Наносимый урон за выстрел
 ---@field amount integer          # Количество патронов/зарядов
 ---@field angle number            # Угол разброса (в градусах)
@@ -12,9 +13,10 @@
 
 ---@class WeaponsConfig
 ---@field [string] WeaponConfigData # Другие виды оружия (динамические ключи)
-local weapon_config = {
-    gun = {
+local weapons_config = {
+    {
         id = 1,
+        name = "gun",
         damage = 10,
         amount = 5,
         angle = 10,
@@ -25,8 +27,9 @@ local weapon_config = {
         reloading_time = 2,
         cooldown = 0.2
     },
-    shotgun = {
+    {
         id = 2,
+        name = "shotgun",
         damage = 15,
         amount = 3,
         angle = 30,
@@ -40,4 +43,4 @@ local weapon_config = {
 }
 
 
-return weapon_config
+return weapons_config
