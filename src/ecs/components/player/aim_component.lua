@@ -6,6 +6,9 @@
 --- @field angle number
 --- @field angle_stand number
 --- @field angle_move number
+--- @field current_scale number
+--- @field distance number
+--- @field is_update_distance boolean
 local aim_component = {
     name = "aim_component"
 }

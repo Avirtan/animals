@@ -4,6 +4,7 @@ local world_ecs = require "src.ecs.world_ecs"
 local units_service = require "src.services.units.units_service"
 local input_service = require "src.services.input_service"
 local ecs_system_service = require "src.services.ecs.ecs_system_service"
+local weapons_service = require "src.services.weapon.weapons_service"
 
 local spawn_player_component = require "src.ecs.components.events.sapwn_units.spawn_player_component"
 local spawn_enemy_component = require "src.ecs.components.events.sapwn_units.spawn_enemy_component"
@@ -31,7 +32,9 @@ function init(self)
     world_ecs.add_component(world_ecs.world_id.Main, entity_spawn_player, c1)
 
     local entity_change_weapon = world_ecs.create_entity(world_ecs.world_id.Main)
-    local c2 = change_weapon_component.new(2)
+
+    local weapons = weapons_service.get_selected_weapons()
+    local c2 = change_weapon_component.new(weapons[1])
     world_ecs.add_component(world_ecs.world_id.Main, entity_change_weapon, c2)
 
     local entity_spawn_enemy = world_ecs.create_entity(world_ecs.world_id.Main)

@@ -1,6 +1,7 @@
 local world_ecs = require "src.ecs.world_ecs"
 local aim_component = require "src.ecs.components.player.aim_component"
 local move_component = require "src.ecs.components.move.move_component"
+local weapon_component = require "src.ecs.components.weapon.weapon_component"
 
 local log = require("log.log")
 
@@ -11,20 +12,39 @@ function aim_scaling_system.init(world_id)
 end
 
 function aim_scaling_system.update(world_id, dt)
-    local entites = world_ecs.select_component(world_id, aim_component.name, move_component.name)
+    local entites = world_ecs.select_component(world_id, aim_component.name, move_component.name, weapon_component.name)
 
     for _, entity in ipairs(entites) do
         --- @type AimComponent
         local component_aim = world_ecs.get_component(world_id, entity, aim_component.name)
         --- @type MoveComponent
         local component_move = world_ecs.get_component(world_id, entity, move_component.name)
-
-        if component_move.dir_move.x ~= 0 or component_move.dir_move.y ~= 0 then
-            go.set(component_aim.url, "scale.x", 1)
-            go.set(component_aim.url, "scale.y", 1)
+        --- @type WeaponComponent
+        local component_weapon = world_ecs.get_component(world_id, entity, weapon_component.name)
+        if component_weapon.cached_data == nil then
+            return
+        end
+        local data_weapon = component_weapon.cached_data
+        local scale = 0
+        if component_move.is_moving then
+            scale = data_weapon.move_angle * 0.2
         else
-            go.set(component_aim.url, "scale.x", 0.5)
-            go.set(component_aim.url, "scale.y", 0.5)
+            scale = data_weapon.angle * 0.2
+        end
+
+        if scale ~= component_aim.current_scale or component_aim.is_update_distance then
+            component_aim.current_scale = scale
+            local normalized_value = 1
+            if component_aim.distance ~= nil then
+                local max_range_sqr = data_weapon.range * data_weapon.range
+                normalized_value = math.min(1, component_aim.distance / max_range_sqr)
+                if normalized_value < 0.3 then
+                    normalized_value = 0.3
+                end
+            end
+            go.set(component_aim.url, "scale.x", scale * normalized_value)
+            go.set(component_aim.url, "scale.y", scale * normalized_value)
+            component_aim.is_update_distance = false
         end
     end
 end

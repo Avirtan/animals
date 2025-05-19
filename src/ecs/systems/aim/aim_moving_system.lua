@@ -36,7 +36,7 @@ function aim_moving_system.update(world_id, dt)
 
         local data_weapon = component_weapon.cached_data
         local angle = data_weapon.angle
-        if component_move.dir_move.x ~= 0 or component_move.dir_move.y ~= 0 then
+        if component_move.is_moving then
             angle = data_weapon.move_angle
         end
 
@@ -53,12 +53,21 @@ function aim_moving_system.update(world_id, dt)
         component_aim.tmp_vector.y = y
         local local_position = component_aim.tmp_vector - position_player
 
-        aim_service.draw_cone(position_player, local_position, angle, 100)
+        aim_service.draw_cone(position_player, local_position, angle, data_weapon.range)
         component_aim.current_dir = local_position
         local len = vmath.length_sqr(local_position)
-        if len > 10000 then
-            local_position = vmath.normalize(local_position) * 100
+
+        local max_range_sqr = data_weapon.range * data_weapon.range -- Квадрат максимальной дистанции для оптимизации
+
+        if len ~= component_aim.distance and len <= max_range_sqr then
+            component_aim.distance = len
+            component_aim.is_update_distance = true
         end
+
+        if len > max_range_sqr then
+            local_position = vmath.normalize(local_position) * data_weapon.range
+        end
+
         go.set_position(local_position, component_aim.url)
         component_aim.last_position.x = touch_position.x
         component_aim.last_position.y = touch_position.y

@@ -3,6 +3,9 @@ local log = require("log.log")
 local weapon_item_widget = require("src.gui.panels.weapon_panel.items.weapon_item")
 local event = require("event.event")
 local game_gui_service = require "src.services.gui.game_gui_service"
+local weapons_service = require "src.services.weapon.weapons_service"
+local change_weapon_component = require "src.ecs.components.events.weapon.change_weapon_component"
+local world_ecs = require "src.ecs.world_ecs"
 
 ---@class weapon_panel: druid.widget
 ---@field prefab node
@@ -19,11 +22,13 @@ function M:init()
     self.on_weapon_item_click:subscribe(self.select_weapon, self)
 
     self.layout:set_margin(10, nil)
-    for i = 1, 5 do
+    local weapons = weapons_service.get_selected_weapons()
+    for index, id in pairs(weapons) do
+        local weapon_data = weapons_service.get_weapon_data_config_by_id(id)
         local weapon_item = self.druid:new_widget(weapon_item_widget, "weapon_item", "root")
-        weapon_item:post_init(self.on_weapon_item_click, i, "weapon " .. i)
+        weapon_item:post_init(self.on_weapon_item_click, id, weapon_data.name)
         local root = weapon_item:get_node("root")
-        if i == 1 then
+        if index == 1 then
             weapon_item:select()
         end
         table.insert(self.weapon_items, weapon_item)
@@ -38,6 +43,10 @@ function M:select_weapon(index)
     end
     self.weapon_items[index]:select()
     game_gui_service.change_weapon(index)
+
+    local entity_change_weapon = world_ecs.create_entity(world_ecs.world_id.Main)
+    local c2 = change_weapon_component.new(index)
+    world_ecs.add_component(world_ecs.world_id.Main, entity_change_weapon, c2)
 end
 
 function M:unload()
