@@ -50,6 +50,12 @@ nodes {
   parent: "weapon_panel/weapon_item/root"
   template_node_child: true
 }
+nodes {
+  type: TYPE_TEXT
+  id: "weapon_panel/weapon_item/time"
+  parent: "weapon_panel/weapon_item/root"
+  template_node_child: true
+}
 material: "/builtins/materials/gui.material"
 layouts {
   name: "Landscape"

@@ -2,7 +2,9 @@
 --- @field name string
 --- @field weapon_id number
 --- @field cached_data WeaponConfigData
-
+--- @field current_amount number
+--- @field current_time number
+--- @field is_reloading boolean
 local weapon_component = {
     name = "weapon_component"
 }

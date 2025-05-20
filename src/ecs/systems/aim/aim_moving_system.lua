@@ -34,6 +34,7 @@ function aim_moving_system.update(world_id, dt)
             return
         end
 
+
         local data_weapon = component_weapon.cached_data
         local angle = data_weapon.angle
         if component_move.is_moving then

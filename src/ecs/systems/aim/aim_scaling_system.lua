@@ -27,10 +27,11 @@ function aim_scaling_system.update(world_id, dt)
         local data_weapon = component_weapon.cached_data
         local scale = 0
         if component_move.is_moving then
-            scale = data_weapon.move_angle * 0.2
+            scale = data_weapon.move_angle
         else
-            scale = data_weapon.angle * 0.2
+            scale = data_weapon.angle
         end
+        scale = scale * 0.2
 
         if scale ~= component_aim.current_scale or component_aim.is_update_distance then
             component_aim.current_scale = scale

@@ -14,7 +14,6 @@ local collision_component = require "src.ecs.components.physics.collision_compon
 local aim_controller_component = require "src.ecs.components.player.aim_controller_component"
 local aim_selected_component = require "src.ecs.components.player.aim_selected_component"
 local weapon_component = require "src.ecs.components.weapon.weapon_component"
-local cooldown_weapon_component = require "src.ecs.components.weapon.cooldown_weapon_component"
 
 
 --- @type CameraModule
@@ -56,7 +55,6 @@ function spawn_player_system.update(world_id, dt)
         local component_aim_controller = aim_controller_component.new(aim_controller, entity)
         local component_aim_selected = aim_selected_component.new()
         local component_weapon = weapon_component.new()
-        local component_weapon_cooldown = cooldown_weapon_component.new()
 
         camera_otho.follow(camera_service.camera_id, player_controller_url,
             { lerp = 0.05 })
@@ -64,7 +62,7 @@ function spawn_player_system.update(world_id, dt)
 
         world_ecs.add_components(world_id, entity, component_unit, component_sprite, component_move, component_move_input,
             component_animation, component_tag, component_aim, component_collision, component_aim_controller,
-            component_aim_selected, component_weapon, component_weapon_cooldown)
+            component_aim_selected, component_weapon)
 
         world_ecs.delete_entity(world_id, value)
     end

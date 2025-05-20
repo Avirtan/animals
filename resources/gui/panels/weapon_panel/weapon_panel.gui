@@ -38,5 +38,11 @@ nodes {
   parent: "weapon_item/root"
   template_node_child: true
 }
+nodes {
+  type: TYPE_TEXT
+  id: "weapon_item/time"
+  parent: "weapon_item/root"
+  template_node_child: true
+}
 material: "/builtins/materials/gui.material"
 adjust_reference: ADJUST_REFERENCE_PARENT

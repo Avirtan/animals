@@ -8,7 +8,9 @@ local M = {
 function M:init()
     self.root = self:get_node("root")
     self.name_weapon = self:get_node("name_weapon")
+    self.timer_reload = self:get_node("time")
     self.button = self.druid:new_button("root", self.click)
+    gui.set_text(self.timer_reload, "0")
 end
 
 ---@param event event
@@ -16,6 +18,10 @@ function M:post_init(event, index, text)
     self.on_click = event
     self.index = index
     gui.set_text(self.name_weapon, text)
+end
+
+function M:set_timer(time)
+    gui.set_text(self.timer_reload, string.format("%.2f", time))
 end
 
 function M:click()

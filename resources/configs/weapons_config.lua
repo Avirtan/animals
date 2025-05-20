@@ -38,7 +38,7 @@ local weapons_config = {
         bullet_count = 3,
         bullet_speed = 50,
         reloading_time = 3,
-        cooldown = 0
+        cooldown = 0.1
     }
 }
 
