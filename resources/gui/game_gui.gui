@@ -1,7 +1,7 @@
 script: "/src/gui/screen/game.gui_script"
 fonts {
   name: "font"
-  font: "/assets/fonts/font.font"
+  font: "/assets/fonts/font2.font"
 }
 nodes {
   position {
@@ -56,6 +56,101 @@ nodes {
   parent: "weapon_panel/weapon_item/root"
   template_node_child: true
 }
+nodes {
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  type: TYPE_BOX
+  id: "root_debug"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  type: TYPE_TEMPLATE
+  id: "debug_panel"
+  parent: "root_debug"
+  inherit_alpha: true
+  template: "/resources/gui/debug/debug_panel.gui"
+}
+nodes {
+  type: TYPE_BOX
+  id: "debug_panel/root"
+  parent: "debug_panel"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "debug_panel/background"
+  parent: "debug_panel/root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "debug_panel/weapon_panel_debug"
+  parent: "debug_panel/root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "debug_panel/view_select_weapon"
+  parent: "debug_panel/weapon_panel_debug"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "debug_panel/content_select_weapon"
+  parent: "debug_panel/view_select_weapon"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEMPLATE
+  id: "debug_panel/select_item_weapon"
+  parent: "debug_panel/content_select_weapon"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "debug_panel/select_item_weapon/root"
+  parent: "debug_panel/select_item_weapon"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "debug_panel/select_item_weapon/btn"
+  parent: "debug_panel/select_item_weapon/root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  id: "debug_panel/select_item_weapon/text"
+  parent: "debug_panel/select_item_weapon/btn"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEMPLATE
+  id: "debug_panel/btn_show_hide"
+  parent: "debug_panel"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "debug_panel/btn_show_hide/root"
+  parent: "debug_panel/btn_show_hide"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "debug_panel/btn_show_hide/btn"
+  parent: "debug_panel/btn_show_hide/root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  id: "debug_panel/btn_show_hide/text"
+  parent: "debug_panel/btn_show_hide/btn"
+  template_node_child: true
+}
 material: "/builtins/materials/gui.material"
 layouts {
   name: "Landscape"
@@ -93,6 +188,38 @@ layouts {
     id: "weapon_panel/root"
     parent: "weapon_panel"
     overridden_fields: 1
+    template_node_child: true
+  }
+  nodes {
+    position {
+      x: 1020.0
+      y: 461.0
+    }
+    type: TYPE_BOX
+    id: "root_debug"
+    xanchor: XANCHOR_RIGHT
+    yanchor: YANCHOR_TOP
+    overridden_fields: 1
+    overridden_fields: 12
+    overridden_fields: 13
+    overridden_fields: 14
+    overridden_fields: 45
+    overridden_fields: 46
+    visible: false
+  }
+  nodes {
+    type: TYPE_BOX
+    id: "debug_panel/root"
+    parent: "debug_panel"
+    overridden_fields: 45
+    template_node_child: true
+    enabled: false
+  }
+  nodes {
+    type: TYPE_BOX
+    id: "debug_panel/btn_show_hide/root"
+    parent: "debug_panel/btn_show_hide"
+    overridden_fields: 45
     template_node_child: true
   }
 }

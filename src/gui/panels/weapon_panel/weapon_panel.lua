@@ -2,13 +2,12 @@ local layout = require("druid.extended.layout")
 local log = require("log.log")
 local weapon_item_widget = require("src.gui.panels.weapon_panel.items.weapon_item")
 local event = require("event.event")
-local game_gui_service = require "src.services.gui.game_gui_service"
 local weapons_service = require "src.services.weapon.weapons_service"
 local change_weapon_component = require "src.ecs.components.events.weapon.change_weapon_component"
 local world_ecs = require "src.ecs.world_ecs"
 local weapon_component = require "src.ecs.components.weapon.weapon_component"
 
----@class weapon_panel: druid.widget
+---@class WeaponPanel: druid.widget
 ---@field prefab node
 ---@field weapon_items weapon_item[]
 ---@field select_weapon_item weapon_item | nil
@@ -51,7 +50,6 @@ function M:update(dt)
             local component_weapon = world_ecs.get_component(world_ecs.world_id.Main, entity, weapon_component.name)
             self.weapon_component = component_weapon
         end
-        print(self.weapon_component)
     end
     if self.weapon_component.current_time > 0 and self.select_weapon_item ~= nil then
         self.select_weapon_item:set_timer(self.weapon_component.current_time)
@@ -68,7 +66,6 @@ function M:select_weapon(index)
             self.select_weapon_item = value
         end
     end
-    game_gui_service.change_weapon(index)
     local entity_change_weapon = world_ecs.create_entity(world_ecs.world_id.Main)
     local c2 = change_weapon_component.new(index)
     world_ecs.add_component(world_ecs.world_id.Main, entity_change_weapon, c2)

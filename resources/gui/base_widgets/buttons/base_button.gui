@@ -1,0 +1,45 @@
+fonts {
+  name: "font"
+  font: "/assets/fonts/font2.font"
+}
+nodes {
+  size {
+    x: 220.0
+    y: 120.0
+  }
+  type: TYPE_BOX
+  id: "root"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+  visible: false
+}
+nodes {
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  type: TYPE_BOX
+  id: "btn"
+  parent: "root"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  color {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+  }
+  type: TYPE_TEXT
+  text: "\320\242\320\265\320\272\321\201\321\202 \320\272\320\275\320\276\320\277\320\272\320\270"
+  font: "font"
+  id: "text"
+  parent: "btn"
+  inherit_alpha: true
+}
+material: "/builtins/materials/gui.material"
+adjust_reference: ADJUST_REFERENCE_PARENT

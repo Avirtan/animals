@@ -2,16 +2,18 @@
 local druid = require("druid.druid")
 local weapon_panel_widget = require("src.gui.panels.weapon_panel.weapon_panel")
 local game_gui_service = require "src.services.gui.game_gui_service"
+local debug_panel_widget = require("src.gui.debug.debug_panel")
 
 --- @class GameGui
 --- @field druid druid.instance
---- @field weapon_panel weapon_panel
-
+--- @field weapon_panel WeaponPanel
+--- @field debug_panel DebugPanel
 ---@param self GameGui
 function init(self)
-	game_gui_service.set_camera(self)
+	game_gui_service.set_game_screen(self)
 	self.druid = druid.new(self)
 	self.weapon_panel = self.druid:new_widget(weapon_panel_widget, "weapon_panel", nil)
+	self.debug_panel = self.druid:new_widget(debug_panel_widget, "debug_panel", nil)
 end
 
 function final(self)

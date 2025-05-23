@@ -25,4 +25,8 @@ function M.get_weapon_data_by_id(id)
     return M.get_weapon_data_config_by_id(id)
 end
 
+function M.get_all_weapons()
+    return weapons_config
+end
+
 return M

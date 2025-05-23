@@ -2,7 +2,7 @@ local M = {
 }
 
 local state = {
-    selected_weapon = { 1, 2 }
+    selected_weapon = { 1 }
 }
 
 function M.select_weapon(id)

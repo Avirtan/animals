@@ -1,0 +1,287 @@
+fonts {
+  name: "font"
+  font: "/assets/fonts/font2.font"
+}
+nodes {
+  position {
+    x: 1016.0
+    y: 537.0
+  }
+  size {
+    x: 500.0
+    y: 500.0
+  }
+  type: TYPE_BOX
+  id: "root"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+  visible: false
+}
+nodes {
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  type: TYPE_BOX
+  id: "background"
+  parent: "root"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  type: TYPE_BOX
+  id: "weapon_panel_debug"
+  parent: "root"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  type: TYPE_BOX
+  id: "view_select_weapon"
+  parent: "weapon_panel_debug"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  type: TYPE_BOX
+  id: "content_select_weapon"
+  parent: "view_select_weapon"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  type: TYPE_TEMPLATE
+  id: "select_item_weapon"
+  parent: "content_select_weapon"
+  inherit_alpha: true
+  template: "/resources/gui/base_widgets/buttons/base_button.gui"
+}
+nodes {
+  type: TYPE_BOX
+  id: "select_item_weapon/root"
+  parent: "select_item_weapon"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "select_item_weapon/btn"
+  parent: "select_item_weapon/root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  id: "select_item_weapon/text"
+  parent: "select_item_weapon/btn"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEMPLATE
+  id: "btn_show_hide"
+  inherit_alpha: true
+  template: "/resources/gui/base_widgets/buttons/base_button.gui"
+}
+nodes {
+  type: TYPE_BOX
+  id: "btn_show_hide/root"
+  parent: "btn_show_hide"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "btn_show_hide/btn"
+  parent: "btn_show_hide/root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  id: "btn_show_hide/text"
+  parent: "btn_show_hide/btn"
+  template_node_child: true
+}
+material: "/builtins/materials/gui.material"
+layouts {
+  name: "Landscape"
+  nodes {
+    type: TYPE_BOX
+    id: "root"
+    xanchor: XANCHOR_RIGHT
+    yanchor: YANCHOR_TOP
+    overridden_fields: 1
+    overridden_fields: 12
+    overridden_fields: 13
+    overridden_fields: 30
+    overridden_fields: 46
+    visible: false
+  }
+  nodes {
+    size {
+      x: 500.0
+      y: 500.0
+    }
+    color {
+      x: 0.4
+      y: 0.4
+      z: 0.4
+    }
+    type: TYPE_BOX
+    id: "background"
+    parent: "root"
+    overridden_fields: 4
+    overridden_fields: 5
+    overridden_fields: 46
+  }
+  nodes {
+    position {
+      x: 2.0
+      y: 98.0
+    }
+    size {
+      x: 461.0
+      y: 190.0
+    }
+    color {
+      x: 0.4
+      y: 0.4
+      z: 0.4
+    }
+    type: TYPE_BOX
+    id: "weapon_panel_debug"
+    xanchor: XANCHOR_LEFT
+    yanchor: YANCHOR_TOP
+    parent: "root"
+    clipping_mode: CLIPPING_MODE_STENCIL
+    overridden_fields: 1
+    overridden_fields: 4
+    overridden_fields: 5
+    overridden_fields: 12
+    overridden_fields: 13
+    overridden_fields: 27
+    overridden_fields: 45
+    overridden_fields: 46
+  }
+  nodes {
+    position {
+      x: -133.0
+      y: 1.0
+    }
+    size {
+      x: 190.0
+      y: 180.0
+    }
+    color {
+      x: 0.173
+      y: 0.184
+      z: 0.204
+    }
+    type: TYPE_BOX
+    id: "view_select_weapon"
+    parent: "weapon_panel_debug"
+    clipping_mode: CLIPPING_MODE_STENCIL
+    overridden_fields: 1
+    overridden_fields: 4
+    overridden_fields: 5
+    overridden_fields: 27
+    overridden_fields: 29
+    overridden_fields: 38
+    overridden_fields: 46
+  }
+  nodes {
+    position {
+      y: -164.0
+    }
+    size {
+      x: 150.0
+      y: 500.0
+    }
+    color {
+      x: 0.102
+      y: 0.102
+      z: 0.102
+    }
+    type: TYPE_BOX
+    id: "content_select_weapon"
+    parent: "view_select_weapon"
+    overridden_fields: 1
+    overridden_fields: 4
+    overridden_fields: 5
+    overridden_fields: 38
+    overridden_fields: 45
+    overridden_fields: 46
+  }
+  nodes {
+    position {
+      y: 209.0
+    }
+    size {
+      x: 150.0
+      y: 60.0
+    }
+    type: TYPE_BOX
+    id: "select_item_weapon/root"
+    parent: "select_item_weapon"
+    overridden_fields: 1
+    overridden_fields: 3
+    overridden_fields: 4
+    overridden_fields: 46
+    template_node_child: true
+    visible: false
+  }
+  nodes {
+    size {
+      x: 140.0
+      y: 50.0
+    }
+    type: TYPE_BOX
+    id: "select_item_weapon/btn"
+    parent: "select_item_weapon/root"
+    overridden_fields: 4
+    template_node_child: true
+  }
+  nodes {
+    position {
+      x: 165.0
+      y: 214.0
+    }
+    scale {
+      x: 0.6
+      y: 0.6
+    }
+    type: TYPE_TEMPLATE
+    id: "btn_show_hide"
+    overridden_fields: 1
+    overridden_fields: 3
+  }
+  nodes {
+    type: TYPE_BOX
+    id: "btn_show_hide/root"
+    xanchor: XANCHOR_RIGHT
+    yanchor: YANCHOR_TOP
+    parent: "btn_show_hide"
+    overridden_fields: 12
+    overridden_fields: 13
+    template_node_child: true
+  }
+  nodes {
+    type: TYPE_BOX
+    id: "btn_show_hide/btn"
+    parent: "btn_show_hide/root"
+    overridden_fields: 46
+    template_node_child: true
+  }
+}
+layouts {
+  name: "Portrait"
+}
+adjust_reference: ADJUST_REFERENCE_PARENT

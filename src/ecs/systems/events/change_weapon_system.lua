@@ -38,7 +38,7 @@ function change_weapon_system.update(world_id, dt)
         component_weapon.weapon_id = id_weapon
         component_weapon.current_time = 0
         component_weapon.current_amount = component_weapon.cached_data.amount
-        log:info("test", component_weapon)
+        -- log:info("test", component_weapon)
         world_ecs.delete_entity(world_id, entity)
     end
 end
