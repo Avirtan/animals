@@ -2,18 +2,14 @@ local world_ecs = require "src.ecs.world_ecs"
 local collision_component = require "src.ecs.components.physics.collision_component"
 local physics_service = require "src.services.physics_service"
 
+go.property("url_health", msg.url())
 go.property("url_sprite", msg.url())
 go.property("entity_id", -1)
 
 function init(self)
 	self.current_url = msg.url()
 	self.id_model    = nil
-	-- self.correction  = vmath.vector3()
-end
-
-function update(self, dt)
-	-- reset correction
-	-- self.correction = vmath.vector3()
+	label.set_text(self.url_health, "")
 end
 
 function on_message(self, message_id, message, sender)

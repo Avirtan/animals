@@ -34,26 +34,32 @@ nodes {
 }
 nodes {
   type: TYPE_TEMPLATE
-  id: "weapon_panel/weapon_item"
+  id: "weapon_panel/item"
   parent: "weapon_panel/root"
   template_node_child: true
 }
 nodes {
   type: TYPE_BOX
-  id: "weapon_panel/weapon_item/root"
-  parent: "weapon_panel/weapon_item"
+  id: "weapon_panel/item/root"
+  parent: "weapon_panel/item"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "weapon_panel/item/btn"
+  parent: "weapon_panel/item/root"
   template_node_child: true
 }
 nodes {
   type: TYPE_TEXT
-  id: "weapon_panel/weapon_item/name_weapon"
-  parent: "weapon_panel/weapon_item/root"
+  id: "weapon_panel/item/name_weapon"
+  parent: "weapon_panel/item/root"
   template_node_child: true
 }
 nodes {
   type: TYPE_TEXT
-  id: "weapon_panel/weapon_item/time"
-  parent: "weapon_panel/weapon_item/root"
+  id: "weapon_panel/item/time"
+  parent: "weapon_panel/item/root"
   template_node_child: true
 }
 nodes {
@@ -92,39 +98,51 @@ nodes {
   template_node_child: true
 }
 nodes {
-  type: TYPE_BOX
-  id: "debug_panel/view_select_weapon"
+  type: TYPE_TEMPLATE
+  id: "debug_panel/scroll_select_weapon"
   parent: "debug_panel/weapon_panel_debug"
   template_node_child: true
 }
 nodes {
   type: TYPE_BOX
-  id: "debug_panel/content_select_weapon"
-  parent: "debug_panel/view_select_weapon"
+  id: "debug_panel/scroll_select_weapon/root"
+  parent: "debug_panel/scroll_select_weapon"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "debug_panel/scroll_select_weapon/view"
+  parent: "debug_panel/scroll_select_weapon/root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "debug_panel/scroll_select_weapon/content"
+  parent: "debug_panel/scroll_select_weapon/view"
   template_node_child: true
 }
 nodes {
   type: TYPE_TEMPLATE
-  id: "debug_panel/select_item_weapon"
-  parent: "debug_panel/content_select_weapon"
+  id: "debug_panel/scroll_select_weapon/item"
+  parent: "debug_panel/scroll_select_weapon/content"
   template_node_child: true
 }
 nodes {
   type: TYPE_BOX
-  id: "debug_panel/select_item_weapon/root"
-  parent: "debug_panel/select_item_weapon"
+  id: "debug_panel/scroll_select_weapon/item/root"
+  parent: "debug_panel/scroll_select_weapon/item"
   template_node_child: true
 }
 nodes {
   type: TYPE_BOX
-  id: "debug_panel/select_item_weapon/btn"
-  parent: "debug_panel/select_item_weapon/root"
+  id: "debug_panel/scroll_select_weapon/item/btn"
+  parent: "debug_panel/scroll_select_weapon/item/root"
   template_node_child: true
 }
 nodes {
   type: TYPE_TEXT
-  id: "debug_panel/select_item_weapon/text"
-  parent: "debug_panel/select_item_weapon/btn"
+  id: "debug_panel/scroll_select_weapon/item/text"
+  parent: "debug_panel/scroll_select_weapon/item/root"
   template_node_child: true
 }
 nodes {
@@ -148,7 +166,7 @@ nodes {
 nodes {
   type: TYPE_TEXT
   id: "debug_panel/btn_show_hide/text"
-  parent: "debug_panel/btn_show_hide/btn"
+  parent: "debug_panel/btn_show_hide/root"
   template_node_child: true
 }
 material: "/builtins/materials/gui.material"
@@ -216,9 +234,9 @@ layouts {
     enabled: false
   }
   nodes {
-    type: TYPE_BOX
-    id: "debug_panel/btn_show_hide/root"
-    parent: "debug_panel/btn_show_hide"
+    type: TYPE_TEMPLATE
+    id: "debug_panel/scroll_select_weapon"
+    parent: "debug_panel/weapon_panel_debug"
     overridden_fields: 45
     template_node_child: true
   }

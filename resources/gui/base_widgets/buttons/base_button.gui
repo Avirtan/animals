@@ -10,7 +10,6 @@ nodes {
   type: TYPE_BOX
   id: "root"
   inherit_alpha: true
-  size_mode: SIZE_MODE_AUTO
   visible: false
 }
 nodes {
@@ -38,7 +37,7 @@ nodes {
   text: "\320\242\320\265\320\272\321\201\321\202 \320\272\320\275\320\276\320\277\320\272\320\270"
   font: "font"
   id: "text"
-  parent: "btn"
+  parent: "root"
   inherit_alpha: true
 }
 material: "/builtins/materials/gui.material"

@@ -2,6 +2,11 @@ components {
   id: "unit_controller"
   component: "/src/scripts/controllers/units/unit_controller.script"
   properties {
+    id: "url_health"
+    value: "#health"
+    type: PROPERTY_TYPE_URL
+  }
+  properties {
     id: "url_sprite"
     value: "#sprite"
     type: PROPERTY_TYPE_URL
@@ -44,4 +49,23 @@ embedded_components {
   "  data: 11.0\n"
   "}\n"
   ""
+}
+embedded_components {
+  id: "health"
+  type: "label"
+  data: "size {\n"
+  "  x: 50.0\n"
+  "  y: 20.0\n"
+  "}\n"
+  "text: \"health\"\n"
+  "font: \"/builtins/fonts/default.font\"\n"
+  "material: \"/builtins/fonts/label-df.material\"\n"
+  ""
+  position {
+    y: 17.0
+  }
+  scale {
+    x: 0.5
+    y: 0.5
+  }
 }

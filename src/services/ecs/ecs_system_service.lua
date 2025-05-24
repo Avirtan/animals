@@ -17,6 +17,7 @@ local select_target_player_system = require "src.ecs.systems.targets.select_targ
 local astar_calculate_path_system = require "src.ecs.systems.astar.astar_calculate_path_system"
 local weapon_shoot_system = require "src.ecs.systems.weapon.weapon_shoot_system"
 local change_weapon_system = require "src.ecs.systems.events.change_weapon_system"
+local change_health_system = require "src.ecs.systems.events.change_health_system"
 
 
 local M = {}
@@ -30,6 +31,7 @@ function M.init_main_systems(world_id)
     M.bullet_systems(world_id)
     M.select_target_systems(world_id)
     M.weapon_system(world_id)
+    M.unit_state_system(world_id)
     --- это должно быть в конце
     M.reset_systems(world_id)
 end
@@ -77,6 +79,10 @@ end
 function M.weapon_system(world_id)
     world_ecs.add_system(world_id, weapon_shoot_system)
     world_ecs.add_system(world_id, change_weapon_system)
+end
+
+function M.unit_state_system(world_id)
+    world_ecs.add_system(world_id, change_health_system)
 end
 
 return M

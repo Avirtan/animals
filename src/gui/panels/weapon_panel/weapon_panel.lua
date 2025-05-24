@@ -21,15 +21,15 @@ local M = {
 function M:init()
     self.root = self:get_node("root")
     self.layout = self.druid:new(layout, "root", "horizontal_wrap")
-    -- log:info("tables", prefab_nodes)
     self.on_weapon_item_click = event.create()
     self.on_weapon_item_click:subscribe(self.select_weapon, self)
+    self.item_prefab = gui.get_node(self:get_template() .. "/item/root")
 
     self.layout:set_margin(10, nil)
     local weapons = weapons_service.get_selected_weapons()
     for index, id in pairs(weapons) do
         local weapon_data = weapons_service.get_weapon_data_config_by_id(id)
-        local weapon_item = self.druid:new_widget(weapon_item_widget, "weapon_item", "root")
+        local weapon_item = self.druid:new_widget(weapon_item_widget, "item", self.item_prefab)
         weapon_item:post_init(self.on_weapon_item_click, id, weapon_data.name)
         local root = weapon_item:get_node("root")
         if index == 1 then
@@ -51,7 +51,7 @@ function M:update(dt)
             self.weapon_component = component_weapon
         end
     end
-    if self.weapon_component.current_time > 0 and self.select_weapon_item ~= nil then
+    if self.weapon_component.weapon_id ~= nil and self.weapon_component.current_time > 0 and self.select_weapon_item ~= nil then
         self.select_weapon_item:set_timer(self.weapon_component.current_time)
     end
 end
@@ -69,6 +69,17 @@ function M:select_weapon(index)
     local entity_change_weapon = world_ecs.create_entity(world_ecs.world_id.Main)
     local c2 = change_weapon_component.new(index)
     world_ecs.add_component(world_ecs.world_id.Main, entity_change_weapon, c2)
+end
+
+function M:reset()
+    for _, value in pairs(self.weapon_items) do
+        value:unload()
+        value = nil
+    end
+    self.layout:clear_layout()
+    self.weapon_items = {}
+    self.select_weapon_item = nil
+    self:init()
 end
 
 function M:unload()

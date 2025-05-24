@@ -17,7 +17,7 @@ nodes {
 }
 nodes {
   type: TYPE_TEMPLATE
-  id: "weapon_item"
+  id: "item"
   parent: "root"
   inherit_alpha: true
   template: "/resources/gui/panels/weapon_panel/items/weapon_item.gui"
@@ -25,23 +25,29 @@ nodes {
 }
 nodes {
   type: TYPE_BOX
-  id: "weapon_item/root"
-  parent: "weapon_item"
+  id: "item/root"
+  parent: "item"
   overridden_fields: 14
   overridden_fields: 45
   template_node_child: true
   enabled: false
 }
 nodes {
-  type: TYPE_TEXT
-  id: "weapon_item/name_weapon"
-  parent: "weapon_item/root"
+  type: TYPE_BOX
+  id: "item/btn"
+  parent: "item/root"
   template_node_child: true
 }
 nodes {
   type: TYPE_TEXT
-  id: "weapon_item/time"
-  parent: "weapon_item/root"
+  id: "item/name_weapon"
+  parent: "item/root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  id: "item/time"
+  parent: "item/root"
   template_node_child: true
 }
 material: "/builtins/materials/gui.material"

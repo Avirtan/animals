@@ -9,6 +9,7 @@ local character_tag_component = require "src.ecs.components.tags.character_tag_c
 local target_component = require "src.ecs.components.targets.target_component"
 local move_astar_component = require "src.ecs.components.move.move_astar_component"
 local units_service = require "src.services.units.units_service"
+local state_unit_component = require "src.ecs.components.units.state_unit_component"
 
 local log = require("log.log")
 
@@ -29,6 +30,7 @@ function spawn_player_system.update(world_id, dt)
         local url_enemy = factory_service.spawn_object_factory(factory_service.factory_name.enemy)
         local unit_controller = msg.url(nil, url_enemy, "unit_controller")
         local srpite_url = go.get(unit_controller, "url_sprite")
+        local health_url = go.get(unit_controller, "url_health")
         local unit_config = units_service.get_unit_config(component_spawn.type_unit)
 
         local component_unit = unit_controller_component.new(unit_controller, entity, component_spawn.position,
@@ -39,9 +41,10 @@ function spawn_player_system.update(world_id, dt)
         local component_tag = character_tag_component.new_enemy_tag()
         local component_target = target_component.new()
         local component_astar = move_astar_component.new()
-
+        local component_state_unit = state_unit_component.new(100)
+        label.set_text(health_url, component_state_unit.health .. " hp")
         world_ecs.add_components(world_id, entity, component_unit, component_sprite, component_move,
-            component_animation, component_tag, component_target, component_astar)
+            component_animation, component_tag, component_target, component_astar, component_state_unit)
         world_ecs.delete_entity(world_id, value)
     end
 end

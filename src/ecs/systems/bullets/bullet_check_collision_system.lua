@@ -2,6 +2,9 @@ local world_ecs = require "src.ecs.world_ecs"
 local collision_component = require "src.ecs.components.physics.collision_component"
 local bullet_tag_component = require "src.ecs.components.tags.bullet_tag_component"
 local bullet_controller_component = require "src.ecs.components.bullets.bullet_controller_component"
+local change_health_component = require "src.ecs.components.events.unit_state.change_health_component"
+
+local log = require("log.log")
 
 local bullet_check_collision = {
 }
@@ -25,6 +28,12 @@ function bullet_check_collision.update(world_id, dt)
             elseif component_collision.other_group == hash("enemy") then
                 go.delete(component_bullet.url)
                 world_ecs.delete_entity(world_id, entity)
+                local url_enemy = component_collision.other_id
+
+                local unit_controller = msg.url(nil, url_enemy, "unit_controller")
+                local id = go.get(unit_controller, "entity_id")
+                local entity_change_health = world_ecs.create_entity(world_id)
+                world_ecs.add_component(world_id, entity_change_health, change_health_component.new(10, id))
             end
         end
     end

@@ -34,8 +34,10 @@ function init(self)
     local entity_change_weapon = world_ecs.create_entity(world_ecs.world_id.Main)
 
     local weapons = weapons_service.get_selected_weapons()
-    local c2 = change_weapon_component.new(weapons[1])
-    world_ecs.add_component(world_ecs.world_id.Main, entity_change_weapon, c2)
+    if #weapons > 0 then
+        local c2 = change_weapon_component.new(weapons[1])
+        world_ecs.add_component(world_ecs.world_id.Main, entity_change_weapon, c2)
+    end
 
     local entity_spawn_enemy = world_ecs.create_entity(world_ecs.world_id.Main)
     local c1 = spawn_enemy_component.new(vmath.vector3(150, 20, 0), units_service.units_key.solder)
