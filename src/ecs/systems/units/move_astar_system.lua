@@ -23,7 +23,6 @@ function move_astar_system.update(world_id, dt)
         local component_unit = world_ecs.get_component(world_id, entity, unit_controller_component.name)
         --- @type MoveAstarComponent
         local component_astar = world_ecs.get_component(world_id, entity, move_astar_component.name)
-
         if component_astar.next_point.x ~= 0 and component_astar.next_point.y ~= 0 then
             local distance = vmath.length(go.get_position(component_unit.url) - component_astar.next_point)
             if distance < 1 then
@@ -41,7 +40,6 @@ function move_astar_system.update(world_id, dt)
             component_move.dir_move = vmath.normalize(component_astar.next_point -
                 go.get_position(component_unit.url));
         end
-
 
 
         component_unit.position = component_unit.position + component_move.dir_move * component_move.speed * dt

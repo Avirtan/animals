@@ -15,21 +15,23 @@ function change_health_system.update(world_id, dt)
     local entites = world_ecs.select_component(world_id, change_health_component.name)
 
     for index, entity in ipairs(entites) do
-        --- @type ChangeHealthComponent
-        local component_change_health = world_ecs.get_component(world_id, entity, change_health_component.name)
-        --- @type StateUnitComponent
-        local component_state_unit = world_ecs.get_component(world_id, component_change_health.entity,
-            state_unit_component.name)
-        --- @type UnitControllerComponent
-        local component_controller = world_ecs.get_component(world_id, component_change_health.entity,
-            unit_controller_component.name)
-        component_state_unit.health = component_state_unit.health - component_change_health.value
-        local health_url = go.get(component_controller.url, "url_health")
-        label.set_text(health_url, component_state_unit.health .. " hp")
-
-
+        change_health_system.change_health(world_id, entity)
         world_ecs.delete_entity(world_id, entity)
     end
+end
+
+function change_health_system.change_health(world_id, entity)
+    --- @type ChangeHealthComponent
+    local component_change_health = world_ecs.get_component(world_id, entity, change_health_component.name)
+    --- @type StateUnitComponent
+    local component_state_unit = world_ecs.get_component(world_id, component_change_health.entity,
+        state_unit_component.name)
+
+    if component_state_unit == nil or component_state_unit.health == 0 then
+        return
+    end
+    component_state_unit.last_health = component_state_unit.health
+    component_state_unit.health = component_state_unit.health + component_change_health.value
 end
 
 function change_health_system.fixed_update(world_id, dt)

@@ -1,12 +1,13 @@
 local input_service = require "src.services.input_service"
 local screen_service = require "src.services.screen_service"
+local save_service = require "src.services.save_service"
 local world_ecs = require "src.ecs.world_ecs"
 local log = require("log.log")
 
 function init(self)
     msg.post(".", "acquire_input_focus")
     self.current_url = msg.url()
-
+    save_service.load_save()
 
     local world = world_ecs.new(world_ecs.world_id.Main)
     input_service.addListener(input_service.events.key, self.current_url)

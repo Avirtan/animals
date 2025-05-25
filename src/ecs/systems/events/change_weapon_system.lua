@@ -34,6 +34,7 @@ function change_weapon_system.update(world_id, dt)
         local component_change_weapon = world_ecs.get_component(world_id, entity, change_weapon_component.name)
 
         local id_weapon = component_change_weapon.id
+        weapons_service.set_current_weapon(id_weapon)
         component_weapon.cached_data = weapons_service.get_weapon_data_by_id(id_weapon)
         component_weapon.weapon_id = id_weapon
         component_weapon.current_time = 0

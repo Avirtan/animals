@@ -146,6 +146,132 @@ nodes {
   template_node_child: true
 }
 nodes {
+  type: TYPE_BOX
+  id: "debug_panel/unity_panel_debug"
+  parent: "debug_panel/root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEMPLATE
+  id: "debug_panel/btn_add_hp_enemy_unit"
+  parent: "debug_panel/unity_panel_debug"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "debug_panel/btn_add_hp_enemy_unit/root"
+  parent: "debug_panel/btn_add_hp_enemy_unit"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "debug_panel/btn_add_hp_enemy_unit/btn"
+  parent: "debug_panel/btn_add_hp_enemy_unit/root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  id: "debug_panel/btn_add_hp_enemy_unit/text"
+  parent: "debug_panel/btn_add_hp_enemy_unit/root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEMPLATE
+  id: "debug_panel/btn_add_unit"
+  parent: "debug_panel/unity_panel_debug"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "debug_panel/btn_add_unit/root"
+  parent: "debug_panel/btn_add_unit"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "debug_panel/btn_add_unit/btn"
+  parent: "debug_panel/btn_add_unit/root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  id: "debug_panel/btn_add_unit/text"
+  parent: "debug_panel/btn_add_unit/root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEMPLATE
+  id: "debug_panel/btn_enable_move_enemy"
+  parent: "debug_panel/unity_panel_debug"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "debug_panel/btn_enable_move_enemy/root"
+  parent: "debug_panel/btn_enable_move_enemy"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "debug_panel/btn_enable_move_enemy/btn"
+  parent: "debug_panel/btn_enable_move_enemy/root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  id: "debug_panel/btn_enable_move_enemy/text"
+  parent: "debug_panel/btn_enable_move_enemy/root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEMPLATE
+  id: "debug_panel/btn_save_game"
+  parent: "debug_panel/unity_panel_debug"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "debug_panel/btn_save_game/root"
+  parent: "debug_panel/btn_save_game"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "debug_panel/btn_save_game/btn"
+  parent: "debug_panel/btn_save_game/root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  id: "debug_panel/btn_save_game/text"
+  parent: "debug_panel/btn_save_game/root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEMPLATE
+  id: "debug_panel/btn_reset_save"
+  parent: "debug_panel/unity_panel_debug"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "debug_panel/btn_reset_save/root"
+  parent: "debug_panel/btn_reset_save"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "debug_panel/btn_reset_save/btn"
+  parent: "debug_panel/btn_reset_save/root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  id: "debug_panel/btn_reset_save/text"
+  parent: "debug_panel/btn_reset_save/root"
+  template_node_child: true
+}
+nodes {
   type: TYPE_TEMPLATE
   id: "debug_panel/btn_show_hide"
   parent: "debug_panel"
@@ -232,13 +358,6 @@ layouts {
     overridden_fields: 45
     template_node_child: true
     enabled: false
-  }
-  nodes {
-    type: TYPE_TEMPLATE
-    id: "debug_panel/scroll_select_weapon"
-    parent: "debug_panel/weapon_panel_debug"
-    overridden_fields: 45
-    template_node_child: true
   }
 }
 layouts {

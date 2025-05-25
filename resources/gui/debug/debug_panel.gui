@@ -97,6 +97,158 @@ nodes {
   template_node_child: true
 }
 nodes {
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  type: TYPE_BOX
+  id: "unity_panel_debug"
+  parent: "root"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  type: TYPE_TEMPLATE
+  id: "btn_add_hp_enemy_unit"
+  parent: "unity_panel_debug"
+  inherit_alpha: true
+  template: "/resources/gui/base_widgets/buttons/base_button.gui"
+}
+nodes {
+  type: TYPE_BOX
+  id: "btn_add_hp_enemy_unit/root"
+  parent: "btn_add_hp_enemy_unit"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "btn_add_hp_enemy_unit/btn"
+  parent: "btn_add_hp_enemy_unit/root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  id: "btn_add_hp_enemy_unit/text"
+  parent: "btn_add_hp_enemy_unit/root"
+  template_node_child: true
+}
+nodes {
+  position {
+    x: -170.0
+    y: -31.0
+  }
+  type: TYPE_TEMPLATE
+  id: "btn_add_unit"
+  parent: "unity_panel_debug"
+  inherit_alpha: true
+  template: "/resources/gui/base_widgets/buttons/base_button.gui"
+}
+nodes {
+  type: TYPE_BOX
+  id: "btn_add_unit/root"
+  parent: "btn_add_unit"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "btn_add_unit/btn"
+  parent: "btn_add_unit/root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  id: "btn_add_unit/text"
+  parent: "btn_add_unit/root"
+  template_node_child: true
+}
+nodes {
+  position {
+    x: -49.0
+    y: -31.0
+  }
+  type: TYPE_TEMPLATE
+  id: "btn_enable_move_enemy"
+  parent: "unity_panel_debug"
+  inherit_alpha: true
+  template: "/resources/gui/base_widgets/buttons/base_button.gui"
+}
+nodes {
+  type: TYPE_BOX
+  id: "btn_enable_move_enemy/root"
+  parent: "btn_enable_move_enemy"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "btn_enable_move_enemy/btn"
+  parent: "btn_enable_move_enemy/root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  id: "btn_enable_move_enemy/text"
+  parent: "btn_enable_move_enemy/root"
+  template_node_child: true
+}
+nodes {
+  position {
+    x: -95.0
+    y: -31.0
+  }
+  type: TYPE_TEMPLATE
+  id: "btn_save_game"
+  parent: "unity_panel_debug"
+  inherit_alpha: true
+  template: "/resources/gui/base_widgets/buttons/base_button.gui"
+}
+nodes {
+  type: TYPE_BOX
+  id: "btn_save_game/root"
+  parent: "btn_save_game"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "btn_save_game/btn"
+  parent: "btn_save_game/root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  id: "btn_save_game/text"
+  parent: "btn_save_game/root"
+  template_node_child: true
+}
+nodes {
+  position {
+    x: -200.0
+    y: -89.0
+  }
+  type: TYPE_TEMPLATE
+  id: "btn_reset_save"
+  parent: "unity_panel_debug"
+  inherit_alpha: true
+  template: "/resources/gui/base_widgets/buttons/base_button.gui"
+}
+nodes {
+  type: TYPE_BOX
+  id: "btn_reset_save/root"
+  parent: "btn_reset_save"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "btn_reset_save/btn"
+  parent: "btn_reset_save/root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  id: "btn_reset_save/text"
+  parent: "btn_reset_save/root"
+  template_node_child: true
+}
+nodes {
   type: TYPE_TEMPLATE
   id: "btn_show_hide"
   inherit_alpha: true
@@ -213,6 +365,325 @@ layouts {
     id: "scroll_select_weapon/view"
     parent: "scroll_select_weapon/root"
     overridden_fields: 4
+    template_node_child: true
+  }
+  nodes {
+    size {
+      x: 250.0
+      y: 334.0
+    }
+    type: TYPE_BOX
+    id: "scroll_select_weapon/content"
+    parent: "scroll_select_weapon/view"
+    overridden_fields: 4
+    template_node_child: true
+  }
+  nodes {
+    position {
+      y: -2.0
+    }
+    size {
+      x: 461.0
+      y: 190.0
+    }
+    color {
+      x: 0.4
+      y: 0.4
+      z: 0.4
+    }
+    type: TYPE_BOX
+    id: "unity_panel_debug"
+    xanchor: XANCHOR_LEFT
+    yanchor: YANCHOR_TOP
+    pivot: PIVOT_N
+    parent: "root"
+    overridden_fields: 1
+    overridden_fields: 4
+    overridden_fields: 5
+    overridden_fields: 12
+    overridden_fields: 13
+    overridden_fields: 14
+    overridden_fields: 46
+  }
+  nodes {
+    position {
+      x: -200.0
+      y: -31.0
+    }
+    type: TYPE_TEMPLATE
+    id: "btn_add_hp_enemy_unit"
+    parent: "unity_panel_debug"
+    overridden_fields: 1
+  }
+  nodes {
+    scale {
+      x: 0.5
+      y: 0.5
+    }
+    size {
+      x: 90.0
+      y: 90.0
+    }
+    type: TYPE_BOX
+    id: "btn_add_hp_enemy_unit/root"
+    xanchor: XANCHOR_LEFT
+    yanchor: YANCHOR_TOP
+    parent: "btn_add_hp_enemy_unit"
+    overridden_fields: 3
+    overridden_fields: 4
+    overridden_fields: 12
+    overridden_fields: 13
+    template_node_child: true
+  }
+  nodes {
+    size {
+      x: 90.0
+      y: 90.0
+    }
+    type: TYPE_BOX
+    id: "btn_add_hp_enemy_unit/btn"
+    parent: "btn_add_hp_enemy_unit/root"
+    overridden_fields: 4
+    template_node_child: true
+  }
+  nodes {
+    size {
+      x: 90.0
+      y: 90.0
+    }
+    type: TYPE_TEXT
+    text: "\320\264\320\276\320\261\320\260\320\262\320\270\321\202\321\214 \321\205\321\200 \320\262\321\200\320\260\320\263\320\260\320\274"
+    id: "btn_add_hp_enemy_unit/text"
+    line_break: true
+    parent: "btn_add_hp_enemy_unit/root"
+    overridden_fields: 4
+    overridden_fields: 8
+    overridden_fields: 18
+    template_node_child: true
+  }
+  nodes {
+    position {
+      x: -146.0
+      y: -31.0
+    }
+    type: TYPE_TEMPLATE
+    id: "btn_add_unit"
+    parent: "unity_panel_debug"
+    overridden_fields: 1
+  }
+  nodes {
+    scale {
+      x: 0.5
+      y: 0.5
+    }
+    size {
+      x: 90.0
+      y: 90.0
+    }
+    type: TYPE_BOX
+    id: "btn_add_unit/root"
+    xanchor: XANCHOR_LEFT
+    yanchor: YANCHOR_TOP
+    parent: "btn_add_unit"
+    overridden_fields: 3
+    overridden_fields: 4
+    overridden_fields: 12
+    overridden_fields: 13
+    template_node_child: true
+  }
+  nodes {
+    size {
+      x: 90.0
+      y: 90.0
+    }
+    type: TYPE_BOX
+    id: "btn_add_unit/btn"
+    parent: "btn_add_unit/root"
+    overridden_fields: 4
+    template_node_child: true
+  }
+  nodes {
+    size {
+      x: 90.0
+      y: 90.0
+    }
+    type: TYPE_TEXT
+    text: "\320\264\320\276\320\261\320\260\320\262\320\270\321\202\321\214 \321\205\321\200 \320\262\321\200\320\260\320\263\320\260\320\274"
+    id: "btn_add_unit/text"
+    line_break: true
+    parent: "btn_add_unit/root"
+    overridden_fields: 4
+    overridden_fields: 8
+    overridden_fields: 18
+    template_node_child: true
+  }
+  nodes {
+    position {
+      x: -95.0
+      y: -31.0
+    }
+    type: TYPE_TEMPLATE
+    id: "btn_enable_move_enemy"
+    parent: "unity_panel_debug"
+    overridden_fields: 1
+  }
+  nodes {
+    scale {
+      x: 0.5
+      y: 0.5
+    }
+    size {
+      x: 90.0
+      y: 90.0
+    }
+    type: TYPE_BOX
+    id: "btn_enable_move_enemy/root"
+    xanchor: XANCHOR_LEFT
+    yanchor: YANCHOR_TOP
+    parent: "btn_enable_move_enemy"
+    overridden_fields: 3
+    overridden_fields: 4
+    overridden_fields: 12
+    overridden_fields: 13
+    template_node_child: true
+  }
+  nodes {
+    size {
+      x: 90.0
+      y: 90.0
+    }
+    type: TYPE_BOX
+    id: "btn_enable_move_enemy/btn"
+    parent: "btn_enable_move_enemy/root"
+    overridden_fields: 4
+    template_node_child: true
+  }
+  nodes {
+    size {
+      x: 90.0
+      y: 90.0
+    }
+    type: TYPE_TEXT
+    text: "\320\222\320\272\320\273 \320\264\320\262\320\270\320\266\320\265\320\275\320\270\320\265 \320\262\321\200\320\260\320\263\320\260\320\274"
+    id: "btn_enable_move_enemy/text"
+    line_break: true
+    parent: "btn_enable_move_enemy/root"
+    overridden_fields: 4
+    overridden_fields: 8
+    overridden_fields: 18
+    template_node_child: true
+  }
+  nodes {
+    position {
+      x: -200.0
+      y: -89.0
+    }
+    type: TYPE_TEMPLATE
+    id: "btn_save_game"
+    parent: "unity_panel_debug"
+    overridden_fields: 1
+  }
+  nodes {
+    scale {
+      x: 0.5
+      y: 0.5
+    }
+    size {
+      x: 90.0
+      y: 90.0
+    }
+    type: TYPE_BOX
+    id: "btn_save_game/root"
+    xanchor: XANCHOR_LEFT
+    yanchor: YANCHOR_TOP
+    parent: "btn_save_game"
+    overridden_fields: 3
+    overridden_fields: 4
+    overridden_fields: 12
+    overridden_fields: 13
+    template_node_child: true
+  }
+  nodes {
+    size {
+      x: 90.0
+      y: 90.0
+    }
+    type: TYPE_BOX
+    id: "btn_save_game/btn"
+    parent: "btn_save_game/root"
+    overridden_fields: 4
+    template_node_child: true
+  }
+  nodes {
+    size {
+      x: 90.0
+      y: 90.0
+    }
+    type: TYPE_TEXT
+    text: "\320\241\320\276\321\205\321\200\320\260\320\275\320\270\321\202\321\214 \320\270\320\263\321\200\321\203"
+    id: "btn_save_game/text"
+    line_break: true
+    parent: "btn_save_game/root"
+    overridden_fields: 4
+    overridden_fields: 8
+    overridden_fields: 18
+    template_node_child: true
+  }
+  nodes {
+    position {
+      x: -142.0
+      y: -89.0
+    }
+    type: TYPE_TEMPLATE
+    id: "btn_reset_save"
+    parent: "unity_panel_debug"
+    overridden_fields: 1
+  }
+  nodes {
+    scale {
+      x: 0.5
+      y: 0.5
+    }
+    size {
+      x: 90.0
+      y: 90.0
+    }
+    type: TYPE_BOX
+    id: "btn_reset_save/root"
+    xanchor: XANCHOR_LEFT
+    yanchor: YANCHOR_TOP
+    parent: "btn_reset_save"
+    overridden_fields: 3
+    overridden_fields: 4
+    overridden_fields: 12
+    overridden_fields: 13
+    template_node_child: true
+  }
+  nodes {
+    size {
+      x: 90.0
+      y: 90.0
+    }
+    type: TYPE_BOX
+    id: "btn_reset_save/btn"
+    parent: "btn_reset_save/root"
+    overridden_fields: 4
+    template_node_child: true
+  }
+  nodes {
+    size {
+      x: 90.0
+      y: 90.0
+    }
+    type: TYPE_TEXT
+    text: "\320\241\320\261\321\200\320\276\321\201\320\270\321\202\321\214 \321\201\320\276\321\205\321\200\320\260\320\275\320\265\320\275\320\270\321\217\n"
+  " "
+    id: "btn_reset_save/text"
+    line_break: true
+    parent: "btn_reset_save/root"
+    overridden_fields: 4
+    overridden_fields: 8
+    overridden_fields: 18
     template_node_child: true
   }
   nodes {

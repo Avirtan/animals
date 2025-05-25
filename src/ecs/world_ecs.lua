@@ -63,7 +63,7 @@ function world_ecs.delete_entity(world_id, entity)
     world.entites[entity] = false
     for _, value in pairs(world.components) do
         if value.entites[entity] ~= nil then
-            value.entites[entity] = false
+            value.entites[entity] = nil
             value.data[entity] = nil
         end
     end

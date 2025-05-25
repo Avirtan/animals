@@ -9,7 +9,7 @@ local M = {
 
 function M:init()
     self.button = self.druid:new_button("btn")
-    self.text_btn = self.druid:new_rich_text(self:get_node("text"), "")
+    self.text_btn = self.druid:new_rich_text(self:get_node("text"))
 end
 
 function M:post_init(text)

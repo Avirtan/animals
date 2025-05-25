@@ -47,7 +47,7 @@ function spawn_bullet_system.update(world_id, dt)
 
         local bullet_controller = msg.url(nil, url_bullet, "bullet_controller")
         local component_bullet = bullet_controller_component.new(bullet_controller, entity, posititon)
-        local component_move = move_component.new(50)
+        local component_move = move_component.new(150)
         component_move.dir_move = bullets_service.bullet_dir_move(dir_aim, angle)
         local component_tag = bullet_tag_component.new_bullet_tag()
         local component_collision = collision_component.new()

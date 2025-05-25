@@ -2,6 +2,7 @@ local world_ecs = require "src.ecs.world_ecs"
 local aim_selected_component = require "src.ecs.components.player.aim_selected_component"
 local spawn_bullet_component = require "src.ecs.components.events.spawn_bullets.spawn_bullet_component"
 local weapon_component = require "src.ecs.components.weapon.weapon_component"
+local units_service = require "src.services.units.units_service"
 
 local weapon_shoot_system = {
 }
@@ -32,9 +33,12 @@ function weapon_shoot_system.update(world_id, dt)
         end
 
         local is_exist = false
-        for k in pairs(component_aim_selected.targets) do
-            is_exist = true
-            break
+        for index, value in pairs(component_aim_selected.targets) do
+            if units_service.units_alive[value] ~= nil then
+                is_exist = true
+                break
+            end
+            component_aim_selected.targets[index] = nil
         end
         if is_exist then
             for i = 1, component_weapon.cached_data.bullet_count, 1 do

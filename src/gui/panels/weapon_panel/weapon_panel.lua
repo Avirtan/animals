@@ -26,13 +26,13 @@ function M:init()
     self.item_prefab = gui.get_node(self:get_template() .. "/item/root")
 
     self.layout:set_margin(10, nil)
-    local weapons = weapons_service.get_selected_weapons()
+    local weapons = weapons_service.get_open_weapons()
     for index, id in pairs(weapons) do
         local weapon_data = weapons_service.get_weapon_data_config_by_id(id)
         local weapon_item = self.druid:new_widget(weapon_item_widget, "item", self.item_prefab)
         weapon_item:post_init(self.on_weapon_item_click, id, weapon_data.name)
         local root = weapon_item:get_node("root")
-        if index == 1 then
+        if id == weapons_service.get_current_weapon() then
             weapon_item:select()
             self.select_weapon_item = weapon_item
         end

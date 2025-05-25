@@ -9,7 +9,8 @@ local M = {
     animations_type = {
         move = "move"
     },
-    cache_animation = {}
+    cache_animation = {},
+    units_alive = {}
 }
 
 local state = {

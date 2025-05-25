@@ -18,6 +18,8 @@ local astar_calculate_path_system = require "src.ecs.systems.astar.astar_calcula
 local weapon_shoot_system = require "src.ecs.systems.weapon.weapon_shoot_system"
 local change_weapon_system = require "src.ecs.systems.events.change_weapon_system"
 local change_health_system = require "src.ecs.systems.events.change_health_system"
+local death_system = require "src.ecs.systems.units.death_system"
+local update_health_system = require "src.ecs.systems.units.update_health_system"
 
 
 local M = {}
@@ -82,7 +84,9 @@ function M.weapon_system(world_id)
 end
 
 function M.unit_state_system(world_id)
+    world_ecs.add_system(world_id, death_system)
     world_ecs.add_system(world_id, change_health_system)
+    world_ecs.add_system(world_id, update_health_system)
 end
 
 return M

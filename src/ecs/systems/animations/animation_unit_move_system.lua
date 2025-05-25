@@ -16,7 +16,6 @@ end
 function animation_unit_move_system.update(world_id, dt)
     local entites = world_ecs.select_component(world_id, move_component.name, animation_unit_component.name,
         sprite_component.name, unit_controller_component.name)
-
     for _, entity in ipairs(entites) do
         --- @type MoveComponent
         local component_move = world_ecs.get_component(world_id, entity, move_component.name)
