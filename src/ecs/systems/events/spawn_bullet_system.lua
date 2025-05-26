@@ -9,6 +9,7 @@ local bullet_tag_component = require "src.ecs.components.tags.bullet_tag_compone
 local aim_component = require "src.ecs.components.player.aim_component"
 local unit_controller_component = require "src.ecs.components.units.unit_controller_component"
 local collision_component = require "src.ecs.components.physics.collision_component"
+local weapon_component = require "src.ecs.components.weapon.weapon_component"
 
 local log = require("log.log")
 
@@ -21,12 +22,13 @@ end
 function spawn_bullet_system.update(world_id, dt)
     local entites = world_ecs.select_component(world_id, spawn_bullet_component.name)
 
-
     for index, value in ipairs(entites) do
-        local entites_aim = world_ecs.select_component(world_id, aim_component.name, unit_controller_component.name)
+        local entites_aim = world_ecs.select_component(world_id, aim_component.name, unit_controller_component.name,
+            weapon_component.name)
         local dir_aim = nil
         local posititon = nil
         local angle = nil
+        local weapon_config = nil
         for index, value in ipairs(entites_aim) do
             --- @type AimComponent
             local component_aim = world_ecs.get_component(world_id, value, aim_component.name)
@@ -35,10 +37,13 @@ function spawn_bullet_system.update(world_id, dt)
             --- @type UnitControllerComponent
             local component_unit = world_ecs.get_component(world_id, value, unit_controller_component.name)
             posititon = go.get_position(component_unit.url)
+            --- @type WeaponComponent
+            local component_weapon = world_ecs.get_component(world_id, value, weapon_component.name)
+            weapon_config = component_weapon.config_data or nil
         end
         --- @type SpawnBulletComponent
         local component_spawn = world_ecs.get_component(world_id, value, spawn_bullet_component.name)
-        if dir_aim == nil then
+        if dir_aim == nil or weapon_config == nil then
             world_ecs.delete_entity(world_id, value)
             break
         end
@@ -47,7 +52,7 @@ function spawn_bullet_system.update(world_id, dt)
 
         local bullet_controller = msg.url(nil, url_bullet, "bullet_controller")
         local component_bullet = bullet_controller_component.new(bullet_controller, entity, posititon)
-        local component_move = move_component.new(150)
+        local component_move = move_component.new(weapon_config.bullet_speed)
         component_move.dir_move = bullets_service.bullet_dir_move(dir_aim, angle)
         local component_tag = bullet_tag_component.new_bullet_tag()
         local component_collision = collision_component.new()

@@ -27,18 +27,20 @@ function M:init()
 
     self.layout:set_margin(10, nil)
     local weapons = weapons_service.get_open_weapons()
-    for index, id in pairs(weapons) do
+    local index = 1
+    for _, id in pairs(weapons) do
         local weapon_data = weapons_service.get_weapon_data_config_by_id(id)
         local weapon_item = self.druid:new_widget(weapon_item_widget, "item", self.item_prefab)
         weapon_item:post_init(self.on_weapon_item_click, id, weapon_data.name)
         local root = weapon_item:get_node("root")
-        if id == weapons_service.get_current_weapon() then
+        if id == weapons_service.get_current_weapon() or (weapons_service.get_current_weapon() == 0 and index == 1) then
             weapon_item:select()
             self.select_weapon_item = weapon_item
         end
         table.insert(self.weapon_items, weapon_item)
         gui.set_enabled(root, true)
         self.layout:add(root)
+        index = index + 1
     end
 end
 

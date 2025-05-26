@@ -13,7 +13,6 @@ local state = {
 function M.load_save()
     local filename = sys.get_save_file(game_service.application_name, state.filename)
     local data = sys.load(filename)
-    log:info("load", data)
     for key, value in pairs(data) do
         weapon_state.set_load_state(value)
     end
@@ -23,14 +22,12 @@ function M.reset_save()
     local filename = sys.get_save_file(game_service.application_name, state.filename)
     state.states = {}
     sys.save(filename, state.states)
-    log:info("reset", state.states)
 end
 
 function M.save()
     local filename = sys.get_save_file(game_service.application_name, state.filename)
     state.states[weapon_state.name] = weapon_state.get_state()
     sys.save(filename, state.states)
-    log:info("save", state.states)
 end
 
 return M

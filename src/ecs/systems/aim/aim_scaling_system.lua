@@ -5,8 +5,9 @@ local weapon_component = require "src.ecs.components.weapon.weapon_component"
 
 local log = require("log.log")
 
-local aim_scaling_system = {
-}
+-- uniquevariable12345 = uniquevariable12345 or {}
+
+local aim_scaling_system = {}
 
 function aim_scaling_system.init(world_id)
 end
@@ -21,10 +22,10 @@ function aim_scaling_system.update(world_id, dt)
         local component_move = world_ecs.get_component(world_id, entity, move_component.name)
         --- @type WeaponComponent
         local component_weapon = world_ecs.get_component(world_id, entity, weapon_component.name)
-        if component_weapon.cached_data == nil then
+        if component_weapon.config_data == nil then
             return
         end
-        local data_weapon = component_weapon.cached_data
+        local data_weapon = component_weapon.config_data
         local scale = 0
         if component_move.is_moving then
             scale = data_weapon.move_angle
@@ -32,16 +33,12 @@ function aim_scaling_system.update(world_id, dt)
             scale = data_weapon.angle
         end
         scale = scale * 0.2
-
         if scale ~= component_aim.current_scale or component_aim.is_update_distance then
             component_aim.current_scale = scale
             local normalized_value = 1
             if component_aim.distance ~= nil then
-                local max_range_sqr = data_weapon.range * data_weapon.range
+                local max_range_sqr = data_weapon.range
                 normalized_value = math.min(1, component_aim.distance / max_range_sqr)
-                if normalized_value < 0.3 then
-                    normalized_value = 0.3
-                end
             end
             go.set(component_aim.url, "scale.x", scale * normalized_value)
             go.set(component_aim.url, "scale.y", scale * normalized_value)

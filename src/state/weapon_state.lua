@@ -21,7 +21,6 @@ function M.set_load_state(save_state)
         return
     end
     state.selected_weapon = save_state.selected_weapon
-    log:info("state", state)
 end
 
 function M.get_state()

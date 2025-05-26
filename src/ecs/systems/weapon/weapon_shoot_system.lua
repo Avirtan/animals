@@ -29,7 +29,7 @@ function weapon_shoot_system.update(world_id, dt)
 
         if component_weapon.is_reloading then
             component_weapon.is_reloading = false
-            component_weapon.current_amount = component_weapon.cached_data.amount
+            component_weapon.current_amount = component_weapon.config_data.amount
         end
 
         local is_exist = false
@@ -41,7 +41,7 @@ function weapon_shoot_system.update(world_id, dt)
             component_aim_selected.targets[index] = nil
         end
         if is_exist then
-            for i = 1, component_weapon.cached_data.bullet_count, 1 do
+            for i = 1, component_weapon.config_data.bullet_count, 1 do
                 local entity_spawn_bullet = world_ecs.create_entity(world_ecs.world_id.Main)
                 local c1 = spawn_bullet_component.new()
                 world_ecs.add_component(world_ecs.world_id.Main, entity_spawn_bullet, c1)
@@ -52,10 +52,10 @@ function weapon_shoot_system.update(world_id, dt)
             end
 
             if component_weapon.current_amount == 0 then
-                component_weapon.current_time = component_weapon.cached_data.reloading_time
+                component_weapon.current_time = component_weapon.config_data.reloading_time
                 component_weapon.is_reloading = true
             else
-                component_weapon.current_time = component_weapon.cached_data.cooldown
+                component_weapon.current_time = component_weapon.config_data.cooldown
             end
         end
     end

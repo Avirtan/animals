@@ -1,7 +1,7 @@
 --- @class WeaponComponent
 --- @field name string
 --- @field weapon_id number
---- @field cached_data WeaponConfigData
+--- @field config_data WeaponConfigData
 --- @field current_amount number
 --- @field current_time number
 --- @field is_reloading boolean
@@ -13,7 +13,7 @@ function weapon_component.new()
     local self = {}
     self.name = weapon_component.name
     self.weapon_id = nil
-    self.cached_data = nil
+    self.config_data = nil
     return self
 end
 

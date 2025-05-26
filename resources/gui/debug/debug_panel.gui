@@ -300,8 +300,10 @@ layouts {
     type: TYPE_BOX
     id: "background"
     parent: "root"
+    alpha: 0.64
     overridden_fields: 4
     overridden_fields: 5
+    overridden_fields: 30
     overridden_fields: 46
   }
   nodes {
@@ -330,6 +332,7 @@ layouts {
     overridden_fields: 13
     overridden_fields: 45
     overridden_fields: 46
+    visible: false
   }
   nodes {
     position {
@@ -404,6 +407,7 @@ layouts {
     overridden_fields: 13
     overridden_fields: 14
     overridden_fields: 46
+    visible: false
   }
   nodes {
     position {
