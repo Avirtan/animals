@@ -249,6 +249,35 @@ nodes {
   template_node_child: true
 }
 nodes {
+  position {
+    x: -142.0
+    y: -89.0
+  }
+  type: TYPE_TEMPLATE
+  id: "btn_enable_joystick"
+  parent: "unity_panel_debug"
+  inherit_alpha: true
+  template: "/resources/gui/base_widgets/buttons/base_button.gui"
+}
+nodes {
+  type: TYPE_BOX
+  id: "btn_enable_joystick/root"
+  parent: "btn_enable_joystick"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "btn_enable_joystick/btn"
+  parent: "btn_enable_joystick/root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  id: "btn_enable_joystick/text"
+  parent: "btn_enable_joystick/root"
+  template_node_child: true
+}
+nodes {
   type: TYPE_TEMPLATE
   id: "btn_show_hide"
   inherit_alpha: true
@@ -685,6 +714,63 @@ layouts {
     id: "btn_reset_save/text"
     line_break: true
     parent: "btn_reset_save/root"
+    overridden_fields: 4
+    overridden_fields: 8
+    overridden_fields: 18
+    template_node_child: true
+  }
+  nodes {
+    position {
+      x: -93.0
+      y: -89.0
+    }
+    type: TYPE_TEMPLATE
+    id: "btn_enable_joystick"
+    parent: "unity_panel_debug"
+    overridden_fields: 1
+  }
+  nodes {
+    scale {
+      x: 0.5
+      y: 0.5
+    }
+    size {
+      x: 90.0
+      y: 90.0
+    }
+    type: TYPE_BOX
+    id: "btn_enable_joystick/root"
+    xanchor: XANCHOR_LEFT
+    yanchor: YANCHOR_TOP
+    parent: "btn_enable_joystick"
+    overridden_fields: 3
+    overridden_fields: 4
+    overridden_fields: 12
+    overridden_fields: 13
+    template_node_child: true
+  }
+  nodes {
+    size {
+      x: 90.0
+      y: 90.0
+    }
+    type: TYPE_BOX
+    id: "btn_enable_joystick/btn"
+    parent: "btn_enable_joystick/root"
+    overridden_fields: 4
+    template_node_child: true
+  }
+  nodes {
+    size {
+      x: 90.0
+      y: 90.0
+    }
+    type: TYPE_TEXT
+    text: "\320\241\320\261\321\200\320\276\321\201\320\270\321\202\321\214 \321\201\320\276\321\205\321\200\320\260\320\275\320\265\320\275\320\270\321\217\n"
+  " "
+    id: "btn_enable_joystick/text"
+    line_break: true
+    parent: "btn_enable_joystick/root"
     overridden_fields: 4
     overridden_fields: 8
     overridden_fields: 18

@@ -11,8 +11,12 @@ function init(self)
 
     local world = world_ecs.new(world_ecs.world_id.Main)
     input_service.addListener(input_service.events.key, self.current_url)
-    input_service.addListener(input_service.events.touch, self.current_url)
-    input_service.addListener(input_service.events.mouse_move, self.current_url)
+    if input_service.is_multitouch then
+        input_service.addListener(input_service.events.multi_touch, self.current_url)
+    else
+        input_service.addListener(input_service.events.touch, self.current_url)
+        input_service.addListener(input_service.events.mouse_move, self.current_url)
+    end
     -- game_controller_service.init_controller(game_controller_service.controller_name.game_controller, msg.url())
 end
 
@@ -27,23 +31,26 @@ end
 function on_message(self, message_id, message, sender)
     -- if message_id == events_service.controller_events.all_controllers_init then
     --     -- timer.delay(2, false, function()
-    --     msg.post("/gui#debugGui", "hide_element")
-    --     local router_controller = router_service.get_router_controller_url()
-    --     msg.post(router_controller, events_service.router_events.start_load_location, {
-    --         name = router_service.get_all_locations().world.name
-    --     })
-    --     -- end)
+    --     msg.post("/gui#debugGui", "hide_element")touch_id_use
     -- end
 
     if message_id == input_service.events.key then
         local isMoveInput = input_service.is_move_input(message)
         if isMoveInput then
-            input_service.set_input_move(message)
+            input_service.set_input_move_key(message)
         end
     end
 
-    if message_id == input_service.events.mouse_move then
+    if message_id == input_service.events.mouse_move and not input_service.is_multitouch then
         input_service.set_input_touch(message)
+    end
+
+    if message_id == input_service.events.multi_touch and input_service.is_multitouch then
+        for _, touch in ipairs(message.touch) do
+            if not input_service.multitouch_data.touch_id_use[touch.id] then
+                input_service.set_input_touch(touch)
+            end
+        end
     end
 end
 

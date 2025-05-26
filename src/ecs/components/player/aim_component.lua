@@ -5,6 +5,7 @@
 --- @field current_dir vector3
 --- @field current_scale number
 --- @field distance number
+--- @field angle number
 --- @field is_update_distance boolean
 local aim_component = {
     name = "aim_component"

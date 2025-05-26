@@ -11,6 +11,7 @@ local move_component = require "src.ecs.components.move.move_component"
 local weapons_service = require "src.services.weapon.weapons_service"
 local game_gui_service = require "src.services.gui.game_gui_service"
 local save_service = require "src.services.save_service"
+local input_service = require "src.services.input_service"
 
 ---@class DebugPanel: druid.widget
 local M = {
@@ -28,6 +29,7 @@ function M:init()
     self.btn_enable_enemy_move = self.druid:new_widget(base_button_widget, "btn_enable_move_enemy", "root")
     self.btn_save_game = self.druid:new_widget(base_button_widget, "btn_save_game", "root")
     self.btn_reset_save = self.druid:new_widget(base_button_widget, "btn_reset_save", "root")
+    self.btn_enable_joystick = self.druid:new_widget(base_button_widget, "btn_enable_joystick", "root")
 
     self.btn_open_hide.button.on_click:subscribe(self.open_debug, self)
     self.btn_open_hide:set_text(self.open_text)
@@ -42,7 +44,8 @@ function M:init()
     self.btn_save_game:set_text("<size=2>Сохранить игру</size>")
     self.btn_reset_save.button.on_click:subscribe(self.reset_save, self)
     self.btn_reset_save:set_text("<size=2>Сбросить сохранения</size>")
-
+    self.btn_enable_joystick.button.on_click:subscribe(self.enable_joystick, self)
+    self.btn_enable_joystick:set_text("<size=2>Включить джостик</size>")
 
     local all_weapons = weapons_service.get_weapons_config()
     local data_select = {}
@@ -108,6 +111,12 @@ end
 
 function M:reset_save()
     save_service.reset_save()
+end
+
+function M:enable_joystick()
+    input_service.is_multitouch = true
+    game_gui_service.get_game_screen().aim_joystick_panel:enable()
+    game_gui_service.get_game_screen().move_joystick_panel:enable()
 end
 
 function M:unload()

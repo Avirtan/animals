@@ -63,6 +63,80 @@ nodes {
   template_node_child: true
 }
 nodes {
+  type: TYPE_TEMPLATE
+  id: "move_joystick_panel"
+  parent: "root"
+  inherit_alpha: true
+  template: "/resources/gui/panels/joystick_panel/move_joystick_panel.gui"
+}
+nodes {
+  type: TYPE_BOX
+  id: "move_joystick_panel/root"
+  parent: "move_joystick_panel"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEMPLATE
+  id: "move_joystick_panel/joystick"
+  parent: "move_joystick_panel/root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "move_joystick_panel/joystick/root"
+  parent: "move_joystick_panel/joystick"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_PIE
+  id: "move_joystick_panel/joystick/joystick_background"
+  parent: "move_joystick_panel/joystick/root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_PIE
+  id: "move_joystick_panel/joystick/stick"
+  parent: "move_joystick_panel/joystick/root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEMPLATE
+  id: "aim_joystick_panel"
+  parent: "root"
+  inherit_alpha: true
+  template: "/resources/gui/panels/joystick_panel/aim_joystick_panel.gui"
+}
+nodes {
+  type: TYPE_BOX
+  id: "aim_joystick_panel/root"
+  parent: "aim_joystick_panel"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEMPLATE
+  id: "aim_joystick_panel/joystick"
+  parent: "aim_joystick_panel/root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "aim_joystick_panel/joystick/root"
+  parent: "aim_joystick_panel/joystick"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_PIE
+  id: "aim_joystick_panel/joystick/joystick_background"
+  parent: "aim_joystick_panel/joystick/root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_PIE
+  id: "aim_joystick_panel/joystick/stick"
+  parent: "aim_joystick_panel/joystick/root"
+  template_node_child: true
+}
+nodes {
   size {
     x: 200.0
     y: 100.0
@@ -273,6 +347,30 @@ nodes {
 }
 nodes {
   type: TYPE_TEMPLATE
+  id: "debug_panel/btn_enable_joystick"
+  parent: "debug_panel/unity_panel_debug"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "debug_panel/btn_enable_joystick/root"
+  parent: "debug_panel/btn_enable_joystick"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "debug_panel/btn_enable_joystick/btn"
+  parent: "debug_panel/btn_enable_joystick/root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  id: "debug_panel/btn_enable_joystick/text"
+  parent: "debug_panel/btn_enable_joystick/root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEMPLATE
   id: "debug_panel/btn_show_hide"
   parent: "debug_panel"
   template_node_child: true
@@ -332,6 +430,50 @@ layouts {
     id: "weapon_panel/root"
     parent: "weapon_panel"
     overridden_fields: 1
+    template_node_child: true
+  }
+  nodes {
+    position {
+      x: -511.0
+      y: -234.0
+    }
+    type: TYPE_TEMPLATE
+    id: "move_joystick_panel"
+    parent: "root"
+    overridden_fields: 1
+    overridden_fields: 45
+    enabled: false
+  }
+  nodes {
+    type: TYPE_BOX
+    id: "move_joystick_panel/root"
+    xanchor: XANCHOR_LEFT
+    yanchor: YANCHOR_BOTTOM
+    parent: "move_joystick_panel"
+    overridden_fields: 12
+    overridden_fields: 13
+    template_node_child: true
+  }
+  nodes {
+    position {
+      x: 482.0
+      y: -237.0
+    }
+    type: TYPE_TEMPLATE
+    id: "aim_joystick_panel"
+    parent: "root"
+    overridden_fields: 1
+    overridden_fields: 45
+    enabled: false
+  }
+  nodes {
+    type: TYPE_BOX
+    id: "aim_joystick_panel/root"
+    xanchor: XANCHOR_RIGHT
+    yanchor: YANCHOR_BOTTOM
+    parent: "aim_joystick_panel"
+    overridden_fields: 12
+    overridden_fields: 13
     template_node_child: true
   }
   nodes {

@@ -1,0 +1,38 @@
+nodes {
+  size {
+    x: 10.0
+    y: 10.0
+  }
+  type: TYPE_BOX
+  id: "root"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+  visible: false
+}
+nodes {
+  type: TYPE_TEMPLATE
+  id: "joystick"
+  parent: "root"
+  inherit_alpha: true
+  template: "/resources/gui/base_widgets/joystick/joystick.gui"
+}
+nodes {
+  type: TYPE_BOX
+  id: "joystick/root"
+  parent: "joystick"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_PIE
+  id: "joystick/joystick_background"
+  parent: "joystick/root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_PIE
+  id: "joystick/stick"
+  parent: "joystick/root"
+  template_node_child: true
+}
+material: "/builtins/materials/gui.material"
+adjust_reference: ADJUST_REFERENCE_PARENT

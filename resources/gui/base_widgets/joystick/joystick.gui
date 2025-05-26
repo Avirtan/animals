@@ -1,0 +1,41 @@
+nodes {
+  size {
+    x: 10.0
+    y: 10.0
+  }
+  type: TYPE_BOX
+  id: "root"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  size {
+    x: 200.0
+    y: 200.0
+  }
+  color {
+    x: 0.31
+    y: 0.318
+    z: 0.322
+  }
+  type: TYPE_PIE
+  id: "joystick_background"
+  parent: "root"
+  inherit_alpha: true
+  perimeterVertices: 64
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  size {
+    x: 80.0
+    y: 80.0
+  }
+  type: TYPE_PIE
+  id: "stick"
+  parent: "root"
+  inherit_alpha: true
+  perimeterVertices: 64
+  size_mode: SIZE_MODE_AUTO
+}
+material: "/builtins/materials/gui.material"
+adjust_reference: ADJUST_REFERENCE_PARENT

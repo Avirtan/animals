@@ -1,7 +1,10 @@
+local helper = require("druid.helper")
+
 local M = {
     events = {
         key = hash("key"),
         touch = hash("touch"),
+        multi_touch = hash("touch_multi"),
         mouse_move = hash("mouse_move")
     },
     input_binding = {
@@ -10,11 +13,16 @@ local M = {
         left = hash("left"),
         right = hash("right"),
         touch = hash("touch"),
+        multi_touch = hash("touch_multi"),
         fire = hash("fire")
     },
     current_inputs = {
         move_input = vmath.vector3(0, 0, 0),
         touch_input = vmath.vector3(0, 0, 0)
+    },
+    is_multitouch = helper.is_multitouch_supported(),
+    multitouch_data = {
+        touch_id_use = {}
     }
 }
 
@@ -31,7 +39,8 @@ local state = {
             action_id = "",
             x = 0,
             y = 0,
-            pressed = false
+            pressed = false,
+            touch = {}
         }
     },
 
@@ -66,13 +75,19 @@ function M.handle_input(action_id, action)
         M.dispatch(M.events.mouse_move, state.data_events.touch_data)
         return
     end
-
-    if action_id == M.input_binding.touch then
+    if action_id == M.input_binding.touch and not M.is_multitouch then
         state.data_events.touch_data.action_id = action_id
         state.data_events.touch_data.pressed = action.pressed;
         state.data_events.touch_data.x = action.x;
         state.data_events.touch_data.y = action.y;
         M.dispatch(M.events.touch, state.data_events.touch_data)
+    elseif action_id == M.input_binding.multi_touch and M.is_multitouch then
+        state.data_events.touch_data.action_id = action_id
+        state.data_events.touch_data.pressed = action.pressed;
+        state.data_events.touch_data.x = action.x;
+        state.data_events.touch_data.y = action.y;
+        state.data_events.touch_data.touch = action.touch
+        M.dispatch(M.events.multi_touch, state.data_events.touch_data)
     elseif action_id ~= nil then
         state.data_events.key_data.action_id = action_id
         state.data_events.key_data.pressed = action.pressed;
@@ -88,7 +103,7 @@ function M.is_move_input(message)
         message.action_id == M.input_binding.right or message.action_id == M.input_binding.left
 end
 
-function M.set_input_move(message)
+function M.set_input_move_key(message)
     local input = M.current_inputs.move_input
 
     if message.action_id == M.input_binding.up and input.y ~= -1 then
@@ -102,6 +117,12 @@ function M.set_input_move(message)
     elseif message.action_id == M.input_binding.left and input.x ~= 1 then
         input.x = message.released and 0 or -1
     end
+end
+
+function M.set_input_move_joystick(x, y)
+    local input = M.current_inputs.move_input
+    input.x = x
+    input.y = y
 end
 
 function M.set_input_touch(message)
