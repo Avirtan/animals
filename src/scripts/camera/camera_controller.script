@@ -56,7 +56,7 @@ local function set_camera_properties(self)
 end
 
 function init(self)
-    msg.post("@render:", "use_camera_projection")
+    -- msg.post("@render:", "use_camera_projection")
     self.id = go.get_id()
     camera_service.set_camera(self.url_camera, self.id)
     set_camera_properties(self)
