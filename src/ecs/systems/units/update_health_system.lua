@@ -2,6 +2,7 @@ local world_ecs = require "src.ecs.world_ecs"
 local change_health_component = require "src.ecs.components.events.unit_state.change_health_component"
 local state_unit_component = require "src.ecs.components.units.state_unit_component"
 local unit_controller_component = require "src.ecs.components.units.unit_controller_component"
+local sprite_component = require "src.ecs.components.animation.sprite_component"
 
 local log = require("log.log")
 
@@ -24,7 +25,8 @@ function change_health_system.update_health(world_id, entity)
     local component_state_unit = world_ecs.get_component(world_id, entity, state_unit_component.name)
     --- @type UnitControllerComponent
     local component_controller = world_ecs.get_component(world_id, entity, unit_controller_component.name)
-
+    --- @type SpriteComponent
+    local component_sprite = world_ecs.get_component(world_id, entity, sprite_component.name)
     if component_state_unit.health == component_state_unit.last_health then
         return
     end
@@ -33,6 +35,8 @@ function change_health_system.update_health(world_id, entity)
     if component_state_unit.health == 0 then
         text_health = "dead"
     end
+    local value_shader = component_state_unit.health / 100 * 16 - 8;
+    go.set(component_sprite.url, "colored_percent", -value_shader)
     label.set_text(health_url, text_health)
 end
 

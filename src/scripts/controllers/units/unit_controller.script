@@ -5,11 +5,15 @@ local physics_service = require "src.services.physics_service"
 go.property("url_health", msg.url())
 go.property("url_sprite", msg.url())
 go.property("entity_id", -1)
+go.property("is_player", false)
 
 function init(self)
 	self.current_url = msg.url()
 	self.id_model    = nil
 	label.set_text(self.url_health, "")
+	if self.is_player then
+		go.set(self.url_sprite, "tint", vmath.vector4(1, 0, 0, 1))
+	end
 end
 
 function on_message(self, message_id, message, sender)

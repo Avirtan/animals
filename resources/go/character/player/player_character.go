@@ -6,20 +6,41 @@ components {
     value: "#sprite_character"
     type: PROPERTY_TYPE_URL
   }
+  properties {
+    id: "is_player"
+    value: "true"
+    type: PROPERTY_TYPE_BOOLEAN
+  }
 }
 embedded_components {
   id: "sprite_character"
   type: "sprite"
   data: "default_animation: \"solder_idle\"\n"
-  "material: \"/builtins/materials/sprite.material\"\n"
+  "material: \"/resources/materials/sprite/sprite_character.material\"\n"
+  "size {\n"
+  "  x: 22.0\n"
+  "  y: 22.0\n"
+  "}\n"
+  "attributes {\n"
+  "  name: \"colored_percent\"\n"
+  "  double_values {\n"
+  "    v: -8.0\n"
+  "  }\n"
+  "}\n"
+  "attributes {\n"
+  "  name: \"tint\"\n"
+  "  double_values {\n"
+  "    v: 0.6\n"
+  "    v: 0.0\n"
+  "    v: 0.0\n"
+  "    v: 1.0\n"
+  "  }\n"
+  "}\n"
   "textures {\n"
   "  sampler: \"texture_sampler\"\n"
   "  texture: \"/assets/atlases/player.atlas\"\n"
   "}\n"
   ""
-  position {
-    z: 1.0
-  }
 }
 embedded_components {
   id: "collisionobject"

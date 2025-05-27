@@ -1,0 +1,37 @@
+name: "sprite_character"
+tags: "sprite_character"
+vertex_program: "/resources/materials/sprite/sprite_character.vp"
+fragment_program: "/resources/materials/sprite/sprite_character.fp"
+vertex_constants {
+  name: "view_proj"
+  type: CONSTANT_TYPE_VIEWPROJ
+}
+samplers {
+  name: "texture_sampler"
+  wrap_u: WRAP_MODE_CLAMP_TO_EDGE
+  wrap_v: WRAP_MODE_CLAMP_TO_EDGE
+  filter_min: FILTER_MODE_MIN_DEFAULT
+  filter_mag: FILTER_MODE_MAG_DEFAULT
+}
+attributes {
+  name: "tint"
+  semantic_type: SEMANTIC_TYPE_COLOR
+  double_values {
+    v: 0.0
+    v: 0.0
+    v: 0.0
+    v: 1.0
+  }
+}
+attributes {
+  name: "position_local"
+  semantic_type: SEMANTIC_TYPE_POSITION
+}
+attributes {
+  name: "colored_percent"
+  coordinate_space: COORDINATE_SPACE_DEFAULT
+  double_values {
+    v: -8.0
+  }
+  vector_type: VECTOR_TYPE_SCALAR
+}

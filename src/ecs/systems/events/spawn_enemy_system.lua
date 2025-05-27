@@ -29,7 +29,7 @@ function spawn_player_system.update(world_id, dt)
         -- label.set_text(health_url, component_state_unit.health .. " hp")
 
         local entity = ecs_units_service.create_unit_entity(world_id, component_spawn.position, unit_config, url_enemy, 0,
-            20)
+            100)
 
         local component_tag = character_tag_component.new_enemy_tag()
         local component_target = target_component.new()

@@ -1,0 +1,29 @@
+#version 140
+
+//константы
+uniform vs_uniforms {
+    mat4 view_proj;
+};
+
+//встроенные
+in vec4 position;
+in vec2 texcoord0;
+//кастомные
+in vec4 tint;
+in vec4 position_local;
+in float colored_percent;
+
+//для фрагментного
+out vec2 var_texcoord0;
+out vec4 var_tint;
+out vec4 var_position;
+out float var_colored_percent;
+
+void main() {
+    gl_Position = view_proj * vec4(position.xyz, 1.0);
+    var_texcoord0 = texcoord0;
+    var_tint = tint;
+    var_position = position_local;
+    var_colored_percent = colored_percent;
+
+}
