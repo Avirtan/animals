@@ -20,7 +20,7 @@ embedded_components {
   "attributes {\n"
   "  name: \"colored_percent\"\n"
   "  double_values {\n"
-  "    v: 0.0\n"
+  "    v: -8.0\n"
   "  }\n"
   "}\n"
   "attributes {\n"

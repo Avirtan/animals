@@ -36,7 +36,7 @@ function change_health_system.update_health(world_id, entity)
         text_health = "dead"
     end
     local value_shader = component_state_unit.health / 100 * 16 - 8;
-    go.set(component_sprite.url, "colored_percent", -value_shader)
+    -- go.set(component_sprite.url, "colored_percent", 8)
     label.set_text(health_url, text_health)
 end
 

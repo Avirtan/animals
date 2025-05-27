@@ -6,7 +6,6 @@ local weapon_component = require "src.ecs.components.weapon.weapon_component"
 local log = require("log.log")
 
 -- uniquevariable12345 = uniquevariable12345 or {}
-
 local aim_scaling_system = {}
 
 function aim_scaling_system.init(world_id)
@@ -40,8 +39,8 @@ function aim_scaling_system.update(world_id, dt)
                 local max_range_sqr = data_weapon.range
                 normalized_value = math.min(1, component_aim.distance / max_range_sqr)
             end
-            go.set(component_aim.url, "scale.x", scale * normalized_value)
-            go.set(component_aim.url, "scale.y", scale * normalized_value)
+            go.set(component_aim.url, "scale.x", scale * 1)
+            go.set(component_aim.url, "scale.y", scale * 1)
             component_aim.is_update_distance = false
         end
     end
